@@ -4,7 +4,7 @@
       <div class="col-xs-12">
         <!-- logo of the page -->
         <div class="logo">
-          <a href="/"><img src="{{ asset('assets/images/logo.png')  }}" alt="EXO" class="img-responsive"></a>
+          <a href="/"><img src="{{ asset('assets/images/logo-light.png')  }}" alt="Naraku" height="35px"></a>
         </div>
         <!-- logo of the page end -->
         <!-- nav-holder of the page -->

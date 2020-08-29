@@ -47,19 +47,19 @@
 					<ul class="list-unstyled process-list">
 						<li class="text-center">
 							<span class="num md-round">1</span>
-							<div class="icon"><img src="{{ asset('assets/images/icon04.png') }}" alt="image description" class="img-responsive"></div>
+							<div class="icon"><img src="{{ asset('assets/images/smart-order.png') }}" alt="Pemesanan" class="img-responsive"></div>
 							<h3>Pemesanan</h3>
 							<p>Jumlah dan jenis pupuk yang dipesan <br>akan disesuaikan dengan kebutuhan lahan anda.</p>
 						</li>
 						<li class="text-center">
 							<span class="num md-round">2</span>
-							<div class="icon"><img src="{{ asset('assets/images/icon05.png') }}" alt="image description" class="img-responsive"></div>
+							<div class="icon"><img src="{{ asset('assets/images/produce.png') }}" alt="Produksi" class="img-responsive"></div>
 							<h3>Produksi</h3>
 							<p>Pesanan pupuk akan diproduksi/ menggunakan <br>pupuk yang tersedia, anda akan disajikan dengan estimasi produk siap dikirim.</p>
 						</li>
 						<li class="text-center">
 							<span class="num md-round">3</span>
-							<div class="icon"><img src="{{ asset('assets/images/icon06.png') }}" alt="image description" class="img-responsive"></div>
+							<div class="icon"><img src="{{ asset('assets/images/deliver.png') }}" alt="Pengiriman" class="img-responsive"></div>
 							<h3>Pengiriman Pupuk</h3>
 							<p>Pupuk yang sudah diproduksi akan dikirim/ diambil <br>sesuai kehendak pembeli, namun akan dikenakan biaya untuk pengiriman.</p>
 						</li>
@@ -173,7 +173,7 @@
 				<div class="row">
 					<div class="col-xs-12 col-sm-6 col-md-4">
 						<div class="f-logo">
-							<a href="home.html"><img src="{{ asset('assets/images/f-logo.png') }}" alt="EXO" class="img-responsive"></a>
+							<a href="home.html"><img src="{{ asset('assets/images/logo-light.png') }}" alt="Naraku" height="35px"></a>
 						</div>
 						<p>Kelompok Tani Karya Tani 2 bertempat di Karang Melok, Kecamatan Tamanan Kabupaten Bondowoso. Salah satu fokus usaha dari organisasi ini adalah produksi  pupuk kandang. Segmentasi penjualan dari Karya Tani 2 Bondowoso berfokus pada anggota dan mitra.</p>
 						<!-- socail network of the page -->
