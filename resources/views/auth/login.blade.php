@@ -1,73 +1,132 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="HandheldFriendly" content="True">
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+    <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('assets/icon/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('assets/icon/android-chrome-192x192.png') }}">
+    <link rel="icon" type="image/png" sizes="512x512" href="{{ asset('assets/icon/android-chrome-512x512.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/icon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/icon/favicon-16x16.png') }}">
+    <meta name="msapplication-TileColor" content="#667eea">
+    <meta name="theme-color" content="#667eea">
+    <link rel="manifest" href="{{ asset('assets/icon/site.webmanifest') }}">
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="description" content="EXO | SEO Landing page Template">
+    <meta name="keywords" content="tanaman, pertanian, perkebunan, pupuk, pupuk organic, kalkukator pintar, neraca bahan baku, sistem pintar">
+    <meta name="author" content="PKM 2020 Naraku Unej">
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+    <title>Naraku - Login</title>
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+		<!-- vector map CSS -->
+		<link href="{{ asset('main/vendors/bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+		<!-- Custom CSS -->
+		<link href="{{ asset('main/css/style.css') }}" rel="stylesheet" type="text/css">
 
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+    <style media="screen">
+      #green {
+        background-color: #27ae60;
+      }
+    </style>
 
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+	</head>
+	<body>
+		<!--Preloader-->
+		<div class="preloader-it">
+			<div class="la-anim-1"></div>
+		</div>
+		<!--/Preloader-->
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
+		<div class="wrapper pa-0">
+			<header class="sp-header">
+				<div class="sp-logo-wrap pull-left">
+					<a href="/">
+						<img class="brand-img mr-10" src="{{ asset('assets/images/emblem-light.png') }}" style="max-width:35px;" alt="brand"/>
+						<span class="brand-text">Naraku</span>
+					</a>
+				</div>
+				<div class="form-group mb-0 pull-right">
+					<span class="inline-block pr-10">Belum Punya Akun?</span>
+					<a class="inline-block btn btn-primary  btn-rounded" id="green" href="{{ route('register') }}">Daftar</a>
+				</div>
+				<div class="clearfix"></div>
+			</header>
 
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+			<!-- Main Content -->
+			<div class="page-wrapper pa-0 ma-0 auth-page">
+				<div class="container-fluid">
+					<!-- Row -->
+					<div class="table-struct full-width full-height">
+						<div class="table-cell vertical-align-middle auth-form-wrap">
+							<div class="auth-form  ml-auto mr-auto no-float card-view pt-30 pb-30">
+								<div class="row">
+									<div class="col-sm-12 col-xs-12">
+										<div class="mb-30">
+											<h3 class="text-center txt-dark mb-10">Masuk</h3>
+										</div>
+										<div class="form-wrap">
+                      <form method="POST" action="{{ route('login') }}">
+                          @csrf
+												<div class="form-group">
+													<label class="control-label mb-10" for="exampleInputEmail_2">Alamat Email</label>
+													<input type="email" class="form-control" required="" id="exampleInputEmail_2" name="email" placeholder="Masukkan email" required>
+												</div>
+												<div class="form-group">
+													<label class="pull-left control-label mb-10" for="exampleInputpwd_2">Kata Sandi</label>
+													<!-- <a class="capitalize-font txt-primary block mb-10 pull-right font-12" href="forgot-password.html">forgot password ?</a> -->
+													<div class="clearfix"></div>
+													<input type="password" class="form-control" required="" id="exampleInputpwd_2" name="password" placeholder="Masukkan kata sandi" required>
+												</div>
+
+												<!-- <div class="form-group">
+													<div class="checkbox checkbox-primary pr-10 pull-left">
+														<input id="checkbox_2" required="" type="checkbox">
+														<label for="checkbox_2"> Keep me logged in</label>
+													</div>
+													<div class="clearfix"></div>
+												</div> -->
+												<div class="form-group text-center">
+													<button type="submit" id="green" class="btn btn-primary  btn-rounded">Masuk</button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /Row -->
+				</div>
+
+			</div>
+			<!-- /Main Content -->
+
+		</div>
+		<!-- /#wrapper -->
+
+		<!-- JavaScript -->
+
+		<!-- jQuery -->
+		<script src="{{ asset('assets/js/jquery.js') }}"></script>
+
+		<!-- Bootstrap Core JavaScript -->
+		<script src="{{ asset('main/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+		<script src="{{ asset('main/vendors/bower_components/jasny-bootstrap/dist/js/jasny-bootstrap.min.js') }}"></script>
+
+		<!-- Slimscroll JavaScript -->
+			<script src="{{ asset('main/js/jquery.slimscroll.js') }}"></script>
+
+		<!-- Init JavaScript -->
+		<script src="{{ asset('main/js/init.js') }}"></script>
+	</body>
+</html>

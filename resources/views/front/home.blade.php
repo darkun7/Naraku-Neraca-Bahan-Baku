@@ -2,6 +2,14 @@
 
 @section('title', "Naraku - Neraca Bahan Baku ")
 
+@section('css')
+	<style media="screen">
+			#green{
+				background-color: #27ae60;
+			}
+	</style>
+@endsection
+
 @section('content')
 <div id="wrapper">
 	<!-- header of the page -->
@@ -22,7 +30,7 @@
 									<h1>Pupuk Organik <br class="hidden-xs">Perkaya Kabon Organik</h1>
 									<p>Kesuburan tanah dapat dikembalikan melalui pemberian pupuk organik sesuai kebutuhan. <br class="hidden-xs">Karya Tani 2  Bondowoso dengan tools Naraku akan memberikan rekomendasi kebutuhan pupuk sesuai dengan kondisi lahan anda.</p>
 									<div class="btn-holder">
-										<a href="/register" class="btn-primary text-center text-uppercase active md-round">Daftar</a>
+										<a href="/register" id="green" class="btn-primary text-center text-uppercase active md-round">Daftar</a>
 										<a href="#" class="btn-primary text-center text-uppercase md-round">Selengkapnya</a>
 									</div>
 								</div>
