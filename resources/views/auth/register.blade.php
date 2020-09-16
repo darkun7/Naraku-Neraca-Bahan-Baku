@@ -81,11 +81,11 @@
 
 												<div class="form-group">
 													<label class="control-label mb-10" for="exampleInputEmail_2">Nama</label>
-													<input type="email" class="form-control" required="" id="exampleInputEmail_2" name="name" placeholder="Nama Lengkap" required>
+													<input type="text" class="form-control" required="" id="exampleInputEmail_2" name="name" placeholder="Nama Lengkap" required>
 												</div>
 												<div class="form-group">
 													<label class="control-label mb-10" for="exampleInputEmail_2">Nomer Telepon</label>
-													<input type="email" class="form-control" required="" id="exampleInputEmail_2" name="phone" placeholder="Nomor Telepon" required>
+													<input type="number" class="form-control" required="" id="exampleInputEmail_2" name="phone_number" placeholder="Nomor Telepon" required>
 												</div>
 												<div class="form-group">
 													<label class="control-label mb-10" for="exampleInputEmail_2">Alamat Email</label>
