@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $id
  * @property string $nama
+ * @property string $deskripsi
  * @property int $harga
  * @property int $jumlah
+ * @property string $gambar
  * @property int $id_komposisi
  * @property string $created_at
  * @property string $updated_at
@@ -27,7 +29,7 @@ class Pupuk extends Model
     /**
      * @var array
      */
-    protected $fillable = ['nama', 'harga', 'jumlah', 'id_komposisi', 'created_at', 'updated_at', 'deleted_at'];
+    protected $fillable = ['nama', 'deskripsi', 'harga', 'jumlah', 'gambar', 'id_komposisi', 'created_at', 'updated_at', 'deleted_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

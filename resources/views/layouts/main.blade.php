@@ -69,24 +69,24 @@
 			<div id="mobile_only_nav" class="mobile-only-nav pull-right" style="color: white !important;">
 				<ul class="nav navbar-right top-nav pull-right">
           <li class="dropdown alert-drp">
-						<a href="#" class="dropdown-toggle" style="color: white !important;" >Username</a>
+						<a href="#" class="dropdown-toggle" style="color: white !important;" >{{ Auth::user()->name }}</a>
           </li>
 					<li class="dropdown auth-drp">
 						<a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown"><img src="{{ asset('main/img/user1.png') }}" alt="user_auth" class="user-auth-img img-circle"/><span class="user-online-status"></span></a>
 						<ul class="dropdown-menu user-auth-dropdown" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
 							<li>
-								<a href="profile.html"><i class="zmdi zmdi-account"></i><span>Profile</span></a>
+								<a href="profile.html"><i class="zmdi zmdi-account"></i><span>Profil</span></a>
 							</li>
 							<li>
-								<a href="inbox.html"><i class="zmdi zmdi-email"></i><span>Inbox</span></a>
-							</li>
-							<li>
-								<a href="#"><i class="zmdi zmdi-settings"></i><span>Settings</span></a>
+								<a href="#"><i class="zmdi zmdi-settings"></i><span>Pengaturan</span></a>
 							</li>
 							<li class="divider"></li>
 							<li>
-								<a href="#"><i class="zmdi zmdi-power"></i><span>Log Out</span></a>
+								<a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="zmdi zmdi-power"></i><span>Keluar</span></a>
 							</li>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+              </form>
 						</ul>
 					</li>
 				</ul>
@@ -103,26 +103,26 @@
 						<div class="user-profile text-center">
 							<img src="{{ asset('main/img/user1.png') }}" alt="user_auth" class="user-auth-img img-circle"/>
 							<div class="dropdown mt-5">
-							<a href="#" class="dropdown-toggle pr-0 bg-transparent" data-toggle="dropdown">ryan georgian <span class="caret"></span></a>
+							<a href="#" class="dropdown-toggle pr-0 bg-transparent" data-toggle="dropdown">{{ Auth::user()->name }} <span class="caret"></span></a>
               <ul class="dropdown-menu user-auth-dropdown" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
-  							<li>
-  								<a href="profile.html"><i class="zmdi zmdi-account"></i><span>Profile</span></a>
+                <li>
+  								<a href="profile.html"><i class="zmdi zmdi-account"></i><span>Profil</span></a>
   							</li>
   							<li>
-  								<a href="inbox.html"><i class="zmdi zmdi-email"></i><span>Inbox</span></a>
-  							</li>
-  							<li>
-  								<a href="#"><i class="zmdi zmdi-settings"></i><span>Settings</span></a>
+  								<a href="#"><i class="zmdi zmdi-settings"></i><span>Pengaturan</span></a>
   							</li>
   							<li class="divider"></li>
   							<li>
-  								<a href="#"><i class="zmdi zmdi-power"></i><span>Log Out</span></a>
+  								<a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="zmdi zmdi-power"></i><span>Keluar</span></a>
   							</li>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  @csrf
+                </form>
   						</ul>
 							</div>
 						</div>
 					</li>
-					<!-- /User Profile -->
+				@role('produsen')
 				<li class="navigation-header">
 					<span>Main</span>
 					<i class="zmdi zmdi-more"></i>
@@ -212,6 +212,7 @@
 					<span>Pendukung</span>
 					<i class="zmdi zmdi-more"></i>
 				</li>
+        @endrole
 				<li>
 					<a href="javascript:void(0);" data-toggle="collapse" data-target="#pages_dr"><div class="pull-left"><i class="zmdi zmdi-google-pages mr-20"></i><span class="right-nav-text">Bantuan</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 					<ul id="pages_dr" class="collapse collapse-level-1 two-col-list">
@@ -224,7 +225,7 @@
 					</ul>
 				</li>
 				<li>
-					<a href="documentation.html"><div class="pull-left"><i class="zmdi zmdi-book mr-20"></i><span class="right-nav-text">documentation</span></div><div class="clearfix"></div></a>
+					<a href="documentation.html"><div class="pull-left"><i class="zmdi zmdi-book mr-20"></i><span class="right-nav-text">Dokumentasi</span></div><div class="clearfix"></div></a>
 				</li>
 			</ul>
 		</div>

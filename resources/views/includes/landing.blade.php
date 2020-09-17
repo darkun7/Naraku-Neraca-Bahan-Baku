@@ -21,8 +21,14 @@
           </nav>
           <!-- nav of the page end -->
           <ul class="list-unstyled sign-list">
-            <li><a href="/login">Masuk</a></li>
-            <li><a href="/register" class="bg-grey md-round">Daftar</a></li>
+              @if (Route::has('login'))
+                @auth
+                  <li><a href="{{ route('home') }}" class="bg-grey md-round">Dasbor</a></li>
+                  @else
+                  <li><a href="{{ route('login') }}">Masuk</a></li>
+                  <li><a href="{{ route('register') }}" class="bg-grey md-round">Daftar</a></li>
+                @endauth
+              @endif
           </ul>
         </div>
         <!-- nav-holder of the page end -->
