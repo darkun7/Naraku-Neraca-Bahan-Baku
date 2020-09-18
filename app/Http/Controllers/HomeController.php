@@ -21,8 +21,20 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    public function landing()
+    {
+      // $web = \App\Setting::all();
+      $web = \App\Setting::findOrFail(0);
+      return view('front.home',compact('web'));
+    }
+
     public function index()
     {
         return view('dasbor.index');
+    }
+
+    public function kalkulator()
+    {
+        return view('dasbor.kalkulator');
     }
 }

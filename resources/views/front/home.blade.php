@@ -27,8 +27,8 @@
 						<div class="container">
 							<div class="row">
 								<div class="col-xs-12">
-									<h1>Pupuk Organik <br class="hidden-xs">Perkaya Kabon Organik</h1>
-									<p>Kesuburan tanah dapat dikembalikan melalui pemberian pupuk organik sesuai kebutuhan. <br class="hidden-xs">Karya Tani 2  Bondowoso dengan tools Naraku akan memberikan rekomendasi kebutuhan pupuk sesuai dengan kondisi lahan anda.</p>
+									<h1>{{$web['jumbotron_title']}}</h1>
+									<p>{{$web['jumbotron_text']}}</p>
 									<div class="btn-holder">
 										<a href="/register" id="green" class="btn-primary text-center text-uppercase active md-round">Daftar</a>
 										<a href="#" class="btn-primary text-center text-uppercase md-round">Selengkapnya</a>
@@ -183,11 +183,11 @@
 						<div class="f-logo">
 							<a href="home.html"><img src="{{ asset('assets/images/logo-light.png') }}" alt="Naraku" height="35px"></a>
 						</div>
-						<p>Kelompok Tani Karya Tani 2 bertempat di Karang Melok, Kecamatan Tamanan Kabupaten Bondowoso. Salah satu fokus usaha dari organisasi ini adalah produksi  pupuk kandang. Segmentasi penjualan dari Karya Tani 2 Bondowoso berfokus pada anggota dan mitra.</p>
+						<p>{{$web['deskripsi']}}</p>
 						<!-- socail network of the page -->
 						<ul class="list-unstyled socail-network">
-              <li><a href="https://wa.me/6281394626994" class="whatsapp"><i class="fa fa-whatsapp"></i></a></li>
-							<li><a href="#" class="instagram"><i class="fa fa-instagram"></i></a></li>
+              <li><a href="https://wa.me/{{$web['nomor_wa']}}" class="whatsapp"><i class="fa fa-whatsapp"></i></a></li>
+							<li><a href="https://instagram.com/{{$web['instagram']}}" class="instagram"><i class="fa fa-instagram"></i></a></li>
 							<!-- <li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
 							<li><a href="#" class="google"><i class="fa fa-google-plus"></i></a></li>
 							<li><a href="#" class="tumblr"><i class="fa fa-tumblr"></i></a></li>
@@ -212,10 +212,10 @@
 					</div>
           <div class="col-xs-12 col-sm-6 col-md-3">
 						<h3 class="heading">Lokasi Produksi</h3>
-            <div style="overflow:hidden;width: 700px;position: relative;"><iframe src="https://maps.google.com/maps?hl=en&amp;q=-8.0457162,113.8261433+(Karya Tani 2 Bondowoso)&amp;ie=UTF8&amp;t=&amp;z=12&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><div style="position: absolute;width: 80%;bottom: 10px;left: 0;right: 0;margin-left: auto;margin-right: auto;color: #000;text-align: center;"><small style="line-height: 1.8;font-size: 0px;background: #fff;"> <a href="https://googlemapsembed.net/">Embed Google Map</a> </small></div><style>.nvs{position:relative;text-align:right;} #gmap_canvas img{max-width:none!important;background:none!important}</style></div>
+            <div style="overflow:hidden;width: 700px;position: relative;"><iframe src="{{$web['maps']}}+(Karya Tani 2 Bondowoso)&amp;ie=UTF8&amp;t=&amp;z=12&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><div style="position: absolute;width: 80%;bottom: 10px;left: 0;right: 0;margin-left: auto;margin-right: auto;color: #000;text-align: center;"><small style="line-height: 1.8;font-size: 0px;background: #fff;"> <a href="https://googlemapsembed.net/">Embed Google Map</a> </small></div><style>.nvs{position:relative;text-align:right;} #gmap_canvas img{max-width:none!important;background:none!important}</style></div>
             <h3 class="heading">Hubungi Kami</h3>
 						<ul class="list-unstyled contact-list">
-							<li><i class="fa fa-phone"></i> <a href="tell:6281394626994">+62 813-9462-6994</a></li>
+							<li><i class="fa fa-phone"></i> <a href="tell:{{$web['nomor_wa']}}">+{{$web['nomor_wa']}}</a></li>
 							<li><i class="fa fa-envelope"></i> <a href="mailto:karyatani2bws@pupuknaraku.com;">karyatani2bws@pupuknaraku.com</a></li>
 						</ul>
           </div>

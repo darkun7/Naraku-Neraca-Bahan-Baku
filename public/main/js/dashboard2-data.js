@@ -1,5 +1,5 @@
 /*Dashboard2 Init*/
-"use strict"; 
+"use strict";
 
 /*****Ready function start*****/
 $(document).ready(function(){
@@ -12,7 +12,7 @@ $(document).ready(function(){
 /*****Ready function end*****/
 
 /*****E-Charts function start*****/
-var echartsConfig = function() { 
+var echartsConfig = function() {
 	if( $('#e_chart_1').length > 0 ){
 		var eChart_1 = echarts.init(document.getElementById('e_chart_1'));
 		var dataBJ = [
@@ -223,7 +223,7 @@ var echartsConfig = function() {
 					fontWeight: 'normal',
 					fontFamily: "'Montserrat', sans-serif",
 					fontSize: 12
-				}	
+				}
 			},
 			series: [{
 				type: 'pie',
@@ -264,7 +264,7 @@ var echartsConfig = function() {
 			}]
 		};
 
-		
+
 		eChart_2.setOption(option1);
 		eChart_2.resize();
 	}
@@ -290,7 +290,7 @@ var echartsConfig = function() {
 					opacity: 0
 				}
 			},
-			
+
 			data: ['-',96, 96, 97, 95, 98, 75, 94,90,89,'-']
 		}, {
 			name: 'def',
@@ -309,7 +309,7 @@ var echartsConfig = function() {
 					borderWidth:2
 				}
 			},
-			
+
 			data: ['-',77, 89, 79, 70, 69, 90, 84,70,69,'-']
 		}];
 		aCategorys.forEach(function(v, i, a) {
@@ -379,9 +379,9 @@ var echartsConfig = function() {
 					fontWeight: 'normal',
 					fontFamily: "'Montserrat', sans-serif",
 					fontSize: 12
-				}	
+				}
 			},
-			
+
 			xAxis: [{
 				type: 'category',
 				boundaryGap: false,
@@ -463,7 +463,7 @@ var echartsConfig = function() {
 				},
 				"axisTick": {
 					"lineStyle": {
-						"color": '#878787', 
+						"color": '#878787',
 						"width": 0
 					},
 					"length": -25,
@@ -497,7 +497,7 @@ var echartsConfig = function() {
 				"data": [{
 					"name": "",
 					"value": 31
-					
+
 				}]
 			}]
 		}
@@ -512,13 +512,13 @@ var echartsConfig = function() {
 
 		eChart_4.setOption(option4);
 		eChart_4.resize();
-	}	
+	}
 	if( $('#e_chart_5').length > 0 ){
 	var eChart_5 = echarts.init(document.getElementById('e_chart_5'));
 	var xData = function(){
     var data = [];
     for(var i=1;i<6;i++){
-     data.push(i);   
+     data.push(i);
 		}
 		return data;
 	}();
@@ -541,25 +541,25 @@ var echartsConfig = function() {
 				fontWeight: 'normal',
 				fontFamily: "'Montserrat', sans-serif",
 				fontSize: 12
-			}	
+			}
 		},
 		"grid": {
 			show:false,
 			top: 30,
 			bottom: 10,
 			containLabel: true,
-		}, 
+		},
 		"legend": {
-			"x": "right", 
+			"x": "right",
 			"data": [ ]
-		}, 
-		"calculable": true, 
+		},
+		"calculable": true,
 		"xAxis": [
 			{
-				type: "category", 
+				type: "category",
 				splitLine: {
 					"show": false
-				}, 
+				},
 				axisLine: {
 					show:false
 				},
@@ -570,19 +570,19 @@ var echartsConfig = function() {
 				},
 				axisTick: {
 					"show": false
-				}, 
+				},
 				splitArea: {
 					"show": false
-				}, 
+				},
 				data: xData,
 			}
-		], 
+		],
 		"yAxis": [
 			{
-				type: "value", 
+				type: "value",
 				splitLine: {
 					"show": false
-				}, 
+				},
 				axisLine: {
 					show:false
 				},
@@ -593,53 +593,53 @@ var echartsConfig = function() {
 				},
 				axisTick: {
 					"show": false
-				}, 
+				},
 				splitArea: {
 					"show": false
 				}
 			}
-		], 
+		],
 		"series": [
 			{
-				"name": "male", 
-				"type": "bar", 
-				"stack": "split", 
-				"barMaxWidth": 50, 
-				"barGap": "10%", 
+				"name": "male",
+				"type": "bar",
+				"stack": "split",
+				"barMaxWidth": 50,
+				"barGap": "10%",
 				"itemStyle": {
 					"normal": {
-						"barBorderRadius": 0, 
-						"color": '#635bd6', 
+						"barBorderRadius": 0,
+						"color": '#635bd6',
 						"label": {
-							"show": true, 
+							"show": true,
 							"textStyle": {
 								"color": "#fff"
-							}, 
+							},
 							"position": "insideTop",
 							formatter : function(p) {
 								return p.value > 0 ? (p.value ): '';
 							}
 						}
 					}
-				}, 
+				},
 				"data": [
-					370, 
-					241, 
-					755, 
-					555, 
-					260, 
-				], 
-			}, 
+					370,
+					241,
+					755,
+					555,
+					260,
+				],
+			},
 			{
-				"name": "female", 
-				"type": "bar", 
-				"stack": "split", 
+				"name": "female",
+				"type": "bar",
+				"stack": "split",
 				"itemStyle": {
 					"normal": {
-						"color": '#f742aa', 
-						"barBorderRadius": 0, 
+						"color": '#f742aa',
+						"barBorderRadius": 0,
 						"label": {
-							"show": true, 
+							"show": true,
 							"position": "top",
 							formatter : function(p) {
 								return p.value > 0 ? ('▼'
@@ -648,42 +648,30 @@ var echartsConfig = function() {
 							}
 						}
 					}
-				}, 
+				},
 				"data": [
-					386, 
-					20, 
-					122, 
-					261, 
-					171, 
+					386,
+					20,
+					122,
+					261,
+					171,
 				]
-			}, 
+			},
 		]
 	}
 	eChart_5.setOption(option5);
 	eChart_5.resize();
-	}	
+	}
 
 }
 /*****E-Charts function end*****/
 
 /*****Load function start*****/
-$(window).on("load",function(){
-	window.setTimeout(function(){
-		$.toast({
-			heading: 'Welcome to Grandin',
-			text: 'Use the predefined ones, or specify a custom position object.',
-			position: 'top-left',
-			loaderBg:'#e3c94b',
-			icon: '',
-			hideAfter: 3500, 
-			stack: 6
-		});
-	}, 3000);
-});
+
 /*****Load function* end*****/
 
 /*****Sparkline function start*****/
-var sparklineLogin = function() { 
+var sparklineLogin = function() {
 		if( $('#sparkline_4').length > 0 ){
 			$("#sparkline_4").sparkline([2,4,4,6,8,5,6,4,8,6,6,2 ], {
 				type: 'line',
@@ -697,7 +685,7 @@ var sparklineLogin = function() {
 				highlightLineColor: 'rgba(0, 0, 0, 0.6)',
 				highlightSpotColor: '#fff'
 			});
-		}	
+		}
 		if( $('#sparkline_5').length > 0 ){
 			$("#sparkline_5").sparkline([0,2,8,6,8], {
 				type: 'bar',
@@ -709,7 +697,7 @@ var sparklineLogin = function() {
 				barColor: '#fff',
 				highlightSpotColor: '#fff'
 			});
-		}	
+		}
 }
 /*****Sparkline function end*****/
 
@@ -719,11 +707,11 @@ $(window).on("resize", function () {
 	/*Sparkline Resize*/
 	clearTimeout(sparkResize);
 	sparkResize = setTimeout(sparklineLogin, 200);
-	
+
 	/*E-Chart Resize*/
 	clearTimeout(echartResize);
 	echartResize = setTimeout(echartsConfig, 200);
-}).resize(); 
+}).resize();
 /*****Resize function end*****/
 
 /*****Function Call start*****/

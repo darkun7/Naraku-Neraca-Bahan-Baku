@@ -42,6 +42,7 @@
 
 	<!-- Custom CSS -->
 	<link href="{{ asset('main/css/style.css') }}" rel="stylesheet" type="text/css">
+  @yield('css')
 </head>
 
 <body>
@@ -72,19 +73,19 @@
 						<a href="#" class="dropdown-toggle" style="color: white !important;" >{{ Auth::user()->name }}</a>
           </li>
 					<li class="dropdown auth-drp">
-						<a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown"><img src="{{ asset('main/img/user1.png') }}" alt="user_auth" class="user-auth-img img-circle"/><span class="user-online-status"></span></a>
+						<a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown"><img src="{{ asset('assets/images/man-person.png') }}" alt="{{ Auth::user()->name }}" class="user-auth-img img-circle"/><span class="user-online-status"></span></a>
 						<ul class="dropdown-menu user-auth-dropdown" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
 							<li>
-								<a href="profile.html"><i class="zmdi zmdi-account"></i><span>Profil</span></a>
+								<a href="{{route('profil')}}"><i class="zmdi zmdi-account"></i><span>Profil</span></a>
 							</li>
-							<li>
+							<!-- <li>
 								<a href="#"><i class="zmdi zmdi-settings"></i><span>Pengaturan</span></a>
-							</li>
+							</li> -->
 							<li class="divider"></li>
 							<li>
-								<a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="zmdi zmdi-power"></i><span>Keluar</span></a>
+								<a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form1').submit();"><i class="zmdi zmdi-power"></i><span>Keluar</span></a>
 							</li>
-              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              <form id="logout-form1" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
               </form>
 						</ul>
@@ -101,16 +102,16 @@
 					<!-- User Profile -->
 					<li>
 						<div class="user-profile text-center">
-							<img src="{{ asset('main/img/user1.png') }}" alt="user_auth" class="user-auth-img img-circle"/>
+							<img src="{{ asset('assets/images/man-person.png') }}" alt="{{ Auth::user()->name }}" class="user-auth-img img-circle"/>
 							<div class="dropdown mt-5">
 							<a href="#" class="dropdown-toggle pr-0 bg-transparent" data-toggle="dropdown">{{ Auth::user()->name }} <span class="caret"></span></a>
               <ul class="dropdown-menu user-auth-dropdown" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
                 <li>
-  								<a href="profile.html"><i class="zmdi zmdi-account"></i><span>Profil</span></a>
+  								<a href="{{route('profil')}}"><i class="zmdi zmdi-account"></i><span>Profil</span></a>
   							</li>
-  							<li>
+  							<!-- <li>
   								<a href="#"><i class="zmdi zmdi-settings"></i><span>Pengaturan</span></a>
-  							</li>
+  							</li> -->
   							<li class="divider"></li>
   							<li>
   								<a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="zmdi zmdi-power"></i><span>Keluar</span></a>
@@ -122,7 +123,7 @@
 							</div>
 						</div>
 					</li>
-				@role('produsen')
+
 				<li class="navigation-header">
 					<span>Main</span>
 					<i class="zmdi zmdi-more"></i>
@@ -130,39 +131,50 @@
 				<li>
 					<a class="active" href="javascript:void(0);" data-toggle="collapse" data-target="#dashboard_dr"><div class="pull-left"><i class="zmdi zmdi-landscape mr-20"></i><span class="right-nav-text">Dasbor</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 					<ul id="dashboard_dr" class="collapse collapse-level-1">
-						<li>
-							<a href="index.html">Kalkulator</a>
+
+            <li>
+							<a href="{{route('home')}}">Beranda</a>
 						</li>
+
+            @role('produsen')
+						<li>
+							<a href="{{route('kalkulator')}}">Kalkulator</a>
+						</li>
+            @endrole
 					</ul>
 				</li>
+        @role('produsen')
         <li>
 					<a href="javascript:void(0);" data-toggle="collapse" data-target="#chart_dr"><div class="pull-left"><i class="zmdi zmdi-chart-donut mr-20"></i><span class="right-nav-text">Penjualan </span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 					<ul id="chart_dr" class="collapse collapse-level-1 two-col-list">
 						<li>
-							<a href="flot-chart.html">Penjualan</a>
+							<a href="{{route('penjualan.index')}}">Penjualan</a>
 						</li>
 						<li>
-							<a href="echart.html">Tambah transaksi</a>
+							<a href="{{route('penjualan.create')}}">Tambah transaksi</a>
 						</li>
             <li>
-							<a href="echart.html">Laporan</a>
+							<a href="#">Laporan</a>
 						</li>
           </ul>
 				</li>
 				<li>
 					<a href="javascript:void(0);" data-toggle="collapse" data-target="#ecom_dr"><div class="pull-left"><i class="zmdi zmdi-shopping-basket mr-20"></i><span class="right-nav-text">Produk</span></div><div class="pull-right"><span class="label label-success">7</span></div><div class="clearfix"></div></a>
 					<ul id="ecom_dr" class="collapse collapse-level-1">
-						<li>
-							<a href="product.html">Produk</a>
+            <li>
+							<a href="{{route('bahan.index')}}">Bahan Baku</a>
 						</li>
 						<li>
-							<a href="add-products.html">Tambah Produk</a>
+							<a href="{{route('pupuk.index')}}">Pupuk</a>
 						</li>
 						<li>
-							<a href="product-orders.html">Pesanan</a>
+							<a href="{{route('pupuk.create')}}">Tambah Pupuk</a>
 						</li>
 						<li>
-							<a href="product-cart.html">Produk Diarsipkan</a>
+							<a href="{{route('pesanan.index')}}">Pesanan</a>
+						</li>
+						<li>
+							<a href="{{route('pupuk.arsip')}}">Pupuk Diarsipkan</a>
 						</li>
 					</ul>
 				</li>
@@ -177,18 +189,18 @@
 					<a href="javascript:void(0);" data-toggle="collapse" data-target="#ui_dr"><div class="pull-left"><i class="zmdi zmdi-smartphone-setup mr-20"></i><span class="right-nav-text">Website</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 					<ul id="ui_dr" class="collapse collapse-level-1 two-col-list">
 						<li>
-							<a href="panels-wells.html">Jumbotron</a>
+							<a href="{{route('pengaturan.jumbotron')}}">Jumbotron</a>
 						</li>
 						<li>
-							<a href="modals.html">Detail Usaha</a>
+							<a href="{{route('pengaturan.website')}}">Detail Usaha</a>
 						</li>
 						<li>
-							<a href="sweetalert.html">Kontak</a>
+							<a href="{{route('pengaturan.maps')}}">Kontak</a>
 						</li>
 					</ul>
 				</li>
 
-				<li>
+				<!-- <li>
 					<a href="javascript:void(0);" data-toggle="collapse" data-target="#table_dr"><div class="pull-left"><i class="zmdi zmdi-book mr-20"></i><span class="right-nav-text">Mitra</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 					<ul id="table_dr" class="collapse collapse-level-1 two-col-list">
 						<li>
@@ -201,26 +213,41 @@
 							<a href="data-table.html">Arsip</a>
 						</li>
 					</ul>
-				</li>
+				</li> -->
 
         <li>
-					<a href="javascript:void(0);" ><div class="pull-left"><i class="zmdi zmdi-map mr-20"></i><span class="right-nav-text">maps</span></div><div class="pull-right"><i class="zmdi"></i></div><div class="clearfix"></div></a>
+					<a href="{{route('pengaturan.maps')}}" ><div class="pull-left"><i class="zmdi zmdi-map mr-20"></i><span class="right-nav-text">maps</span></div><div class="pull-right"><i class="zmdi"></i></div><div class="clearfix"></div></a>
 				</li>
-
+        @endrole
+        @role('pelanggan')
+        <li>
+					<a href="javascript:void(0);" data-toggle="collapse" data-target="#ecom_dr"><div class="pull-left"><i class="zmdi zmdi-shopping-basket mr-20"></i><span class="right-nav-text">Produk</span></div><div class="pull-right"><span class="label label-success">7</span></div><div class="clearfix"></div></a>
+					<ul id="ecom_dr" class="collapse collapse-level-1">
+						<li>
+							<a href="{{route('pupuk.index')}}">Daftar Pupuk</a>
+						</li>
+						<li>
+							<a href="{{route('pesanan.index')}}">Sedang Dipesan</a>
+						</li>
+						<li>
+							<a href="{{route('pesanan.riwayatpesan')}}">Riwayat Pesanan</a>
+						</li>
+					</ul>
+				</li>
+        @endrole
 				<li><hr class="light-grey-hr mb-10"/></li>
 				<li class="navigation-header">
 					<span>Pendukung</span>
 					<i class="zmdi zmdi-more"></i>
 				</li>
-        @endrole
 				<li>
 					<a href="javascript:void(0);" data-toggle="collapse" data-target="#pages_dr"><div class="pull-left"><i class="zmdi zmdi-google-pages mr-20"></i><span class="right-nav-text">Bantuan</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 					<ul id="pages_dr" class="collapse collapse-level-1 two-col-list">
 						<li>
-							<a class="active" href="blank.html">Petunjuk Penggunaan</a>
+							<a class="active" href="#">Petunjuk Penggunaan</a>
 						</li>
             <li>
-							<a class="active" href="blank.html">Ajukan Pertanyaan</a>
+							<a class="active" href="#">Ajukan Pertanyaan</a>
 						</li>
 					</ul>
 				</li>
@@ -230,431 +257,6 @@
 			</ul>
 		</div>
 		<!-- /Left Sidebar Menu -->
-
-		<!-- Right Sidebar Menu -->
-		<div class="fixed-sidebar-right">
-			<ul class="right-sidebar">
-				<li>
-					<div  class="tab-struct custom-tab-1">
-						<ul role="tablist" class="nav nav-tabs" id="right_sidebar_tab">
-							<li class="active" role="presentation"><a aria-expanded="true"  data-toggle="tab" role="tab" id="chat_tab_btn" href="#chat_tab">chat</a></li>
-							<li role="presentation" class=""><a  data-toggle="tab" id="messages_tab_btn" role="tab" href="#messages_tab" aria-expanded="false">messages</a></li>
-							<li role="presentation" class=""><a  data-toggle="tab" id="todo_tab_btn" role="tab" href="#todo_tab" aria-expanded="false">todo</a></li>
-						</ul>
-						<div class="tab-content" id="right_sidebar_content">
-							<div  id="chat_tab" class="tab-pane fade active in" role="tabpanel">
-								<div class="chat-cmplt-wrap">
-									<div class="chat-box-wrap">
-										<div class="add-friend">
-											<a href="javascript:void(0)" class="inline-block txt-grey">
-												<i class="zmdi zmdi-more"></i>
-											</a>
-											<span class="inline-block txt-dark">users</span>
-											<a href="javascript:void(0)" class="inline-block text-right txt-grey"><i class="zmdi zmdi-plus"></i></a>
-											<div class="clearfix"></div>
-										</div>
-										<form role="search" class="chat-search pl-15 pr-15 pb-15">
-											<div class="input-group">
-												<input type="text" id="example-input1-group2" name="example-input1-group2" class="form-control" placeholder="Search">
-												<span class="input-group-btn">
-												<button type="button" class="btn  btn-default"><i class="zmdi zmdi-search"></i></button>
-												</span>
-											</div>
-										</form>
-										<div id="chat_list_scroll">
-											<div class="nicescroll-bar">
-												<ul class="chat-list-wrap">
-													<li class="chat-list">
-														<div class="chat-body">
-															<a href="javascript:void(0)">
-																<div class="chat-data">
-																	<img class="user-img img-circle"  src="{{ asset('main/img/user.png') }}" alt="user"/>
-																	<div class="user-data">
-																		<span class="name block capitalize-font">Clay Masse</span>
-																		<span class="time block truncate txt-grey">No one saves us but ourselves.</span>
-																	</div>
-																	<div class="status away"></div>
-																	<div class="clearfix"></div>
-																</div>
-															</a>
-															<a href="javascript:void(0)">
-																<div class="chat-data">
-																	<img class="user-img img-circle"  src="{{ asset('main/img/user1.png') }}" alt="user"/>
-																	<div class="user-data">
-																		<span class="name block capitalize-font">Evie Ono</span>
-																		<span class="time block truncate txt-grey">Unity is strength</span>
-																	</div>
-																	<div class="status offline"></div>
-																	<div class="clearfix"></div>
-																</div>
-															</a>
-															<a href="javascript:void(0)">
-																<div class="chat-data">
-																	<img class="user-img img-circle"  src="{{ asset('main/img/user2.png') }}" alt="user"/>
-																	<div class="user-data">
-																		<span class="name block capitalize-font">Madalyn Rascon</span>
-																		<span class="time block truncate txt-grey">Respect yourself if you would have others respect you.</span>
-																	</div>
-																	<div class="status online"></div>
-																	<div class="clearfix"></div>
-																</div>
-															</a>
-															<a href="javascript:void(0)">
-																<div class="chat-data">
-																	<img class="user-img img-circle"  src="{{ asset('main/img/user3.png') }}" alt="user"/>
-																	<div class="user-data">
-																		<span class="name block capitalize-font">Mitsuko Heid</span>
-																		<span class="time block truncate txt-grey">I’m thankful.</span>
-																	</div>
-																	<div class="status online"></div>
-																	<div class="clearfix"></div>
-																</div>
-															</a>
-															<a href="javascript:void(0)">
-																<div class="chat-data">
-																	<img class="user-img img-circle"  src="{{ asset('main/img/user.png') }}" alt="user"/>
-																	<div class="user-data">
-																		<span class="name block capitalize-font">Ezequiel Merideth</span>
-																		<span class="time block truncate txt-grey">Patience is bitter.</span>
-																	</div>
-																	<div class="status offline"></div>
-																	<div class="clearfix"></div>
-																</div>
-															</a>
-															<a href="javascript:void(0)">
-																<div class="chat-data">
-																	<img class="user-img img-circle"  src="{{ asset('main/img/user1.png') }}" alt="user"/>
-																	<div class="user-data">
-																		<span class="name block capitalize-font">Jonnie Metoyer</span>
-																		<span class="time block truncate txt-grey">Genius is eternal patience.</span>
-																	</div>
-																	<div class="status online"></div>
-																	<div class="clearfix"></div>
-																</div>
-															</a>
-															<a href="javascript:void(0)">
-																<div class="chat-data">
-																	<img class="user-img img-circle"  src="{{ asset('main/img/user2.png') }}" alt="user"/>
-																	<div class="user-data">
-																		<span class="name block capitalize-font">Angelic Lauver</span>
-																		<span class="time block truncate txt-grey">Every burden is a blessing.</span>
-																	</div>
-																	<div class="status away"></div>
-																	<div class="clearfix"></div>
-																</div>
-															</a>
-															<a href="javascript:void(0)">
-																<div class="chat-data">
-																	<img class="user-img img-circle"  src="{{ asset('main/img/user3.png') }}" alt="user"/>
-																	<div class="user-data">
-																		<span class="name block capitalize-font">Priscila Shy</span>
-																		<span class="time block truncate txt-grey">Wise to resolve, and patient to perform.</span>
-																	</div>
-																	<div class="status online"></div>
-																	<div class="clearfix"></div>
-																</div>
-															</a>
-															<a href="javascript:void(0)">
-																<div class="chat-data">
-																	<img class="user-img img-circle"  src="{{ asset('main/img/user4.png') }}" alt="user"/>
-																	<div class="user-data">
-																		<span class="name block capitalize-font">Linda Stack</span>
-																		<span class="time block truncate txt-grey">Our patience will achieve more than our force.</span>
-																	</div>
-																	<div class="status away"></div>
-																	<div class="clearfix"></div>
-																</div>
-															</a>
-														</div>
-													</li>
-												</ul>
-											</div>
-										</div>
-									</div>
-									<div class="recent-chat-box-wrap">
-										<div class="recent-chat-wrap">
-											<div class="panel-heading ma-0">
-												<div class="goto-back">
-													<a  id="goto_back" href="javascript:void(0)" class="inline-block txt-grey">
-														<i class="zmdi zmdi-chevron-left"></i>
-													</a>
-													<span class="inline-block txt-dark">ryan</span>
-													<a href="javascript:void(0)" class="inline-block text-right txt-grey"><i class="zmdi zmdi-more"></i></a>
-													<div class="clearfix"></div>
-												</div>
-											</div>
-											<div class="panel-wrapper collapse in">
-												<div class="panel-body pa-0">
-													<div class="chat-content">
-														<ul class="nicescroll-bar pt-20">
-															<li class="friend">
-																<div class="friend-msg-wrap">
-																	<img class="user-img img-circle block pull-left"  src="{{ asset('main/img/user.png') }}" alt="user"/>
-																	<div class="msg pull-left">
-																		<p>Hello Jason, how are you, it's been a long time since we last met?</p>
-																		<div class="msg-per-detail text-right">
-																			<span class="msg-time txt-grey">2:30 PM</span>
-																		</div>
-																	</div>
-																	<div class="clearfix"></div>
-																</div>
-															</li>
-															<li class="self mb-10">
-																<div class="self-msg-wrap">
-																	<div class="msg block pull-right"> Oh, hi Sarah I'm have got a new job now and is going great.
-																		<div class="msg-per-detail text-right">
-																			<span class="msg-time txt-grey">2:31 pm</span>
-																		</div>
-																	</div>
-																	<div class="clearfix"></div>
-																</div>
-															</li>
-															<li class="self">
-																<div class="self-msg-wrap">
-																	<div class="msg block pull-right">  How about you?
-																		<div class="msg-per-detail text-right">
-																			<span class="msg-time txt-grey">2:31 pm</span>
-																		</div>
-																	</div>
-																	<div class="clearfix"></div>
-																</div>
-															</li>
-															<li class="friend">
-																<div class="friend-msg-wrap">
-																	<img class="user-img img-circle block pull-left"  src="{{ asset('main/img/user.png') }}" alt="user"/>
-																	<div class="msg pull-left">
-																		<p>Not too bad.</p>
-																		<div class="msg-per-detail  text-right">
-																			<span class="msg-time txt-grey">2:35 pm</span>
-																		</div>
-																	</div>
-																	<div class="clearfix"></div>
-																</div>
-															</li>
-														</ul>
-													</div>
-													<div class="input-group">
-														<input type="text" id="input_msg_send" name="send-msg" class="input-msg-send form-control" placeholder="Type something">
-														<div class="input-group-btn emojis">
-															<div class="dropup">
-																<button type="button" class="btn  btn-default  dropdown-toggle" data-toggle="dropdown" ><i class="zmdi zmdi-mood"></i></button>
-																<ul class="dropdown-menu dropdown-menu-right">
-																	<li><a href="javascript:void(0)">Action</a></li>
-																	<li><a href="javascript:void(0)">Another action</a></li>
-																	<li class="divider"></li>
-																	<li><a href="javascript:void(0)">Separated link</a></li>
-																</ul>
-															</div>
-														</div>
-														<div class="input-group-btn attachment">
-															<div class="fileupload btn  btn-default"><i class="zmdi zmdi-attachment-alt"></i>
-																<input type="file" class="upload">
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div id="messages_tab" class="tab-pane fade" role="tabpanel">
-								<div class="message-box-wrap">
-									<div class="msg-search">
-										<a href="javascript:void(0)" class="inline-block txt-grey">
-											<i class="zmdi zmdi-more"></i>
-										</a>
-										<span class="inline-block txt-dark">messages</span>
-										<a href="javascript:void(0)" class="inline-block text-right txt-grey"><i class="zmdi zmdi-search"></i></a>
-										<div class="clearfix"></div>
-									</div>
-									<div class="set-height-wrap">
-										<div class="streamline message-box nicescroll-bar">
-											<a href="javascript:void(0)">
-												<div class="sl-item unread-message">
-													<div class="sl-avatar avatar avatar-sm avatar-circle">
-														<img class="img-responsive img-circle" src="{{ asset('main/img/user.png') }}" alt="avatar"/>
-													</div>
-													<div class="sl-content">
-														<span class="inline-block capitalize-font   pull-left message-per">Clay Masse</span>
-														<span class="inline-block font-11  pull-right message-time">12:28 AM</span>
-														<div class="clearfix"></div>
-														<span class=" truncate message-subject"> message sent via your monster market profile</span>
-														<p class="txt-grey truncate">Neque porro quisquam est qui dolorem ipsu messm quia dolor sit amet, consectetur, adipisci velit</p>
-													</div>
-												</div>
-											</a>
-											<a href="javascript:void(0)">
-												<div class="sl-item">
-													<div class="sl-avatar avatar avatar-sm avatar-circle">
-														<img class="img-responsive img-circle" src="{{ asset('main/img/user1.png') }}" alt="avatar"/>
-													</div>
-													<div class="sl-content">
-														<span class="inline-block capitalize-font   pull-left message-per">Evie Ono</span>
-														<span class="inline-block font-11  pull-right message-time">1 Feb</span>
-														<div class="clearfix"></div>
-														<span class=" truncate message-subject">Pogody theme support</span>
-														<p class="txt-grey truncate">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</p>
-													</div>
-												</div>
-											</a>
-											<a href="javascript:void(0)">
-												<div class="sl-item">
-													<div class="sl-avatar avatar avatar-sm avatar-circle">
-														<img class="img-responsive img-circle" src="{{ asset('main/img/user2.png') }}" alt="avatar"/>
-													</div>
-													<div class="sl-content">
-														<span class="inline-block capitalize-font   pull-left message-per">Madalyn Rascon</span>
-														<span class="inline-block font-11  pull-right message-time">31 Jan</span>
-														<div class="clearfix"></div>
-														<span class=" truncate message-subject">Congratulations from design nominees</span>
-														<p class="txt-grey truncate">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</p>
-													</div>
-												</div>
-											</a>
-											<a href="javascript:void(0)">
-												<div class="sl-item unread-message">
-													<div class="sl-avatar avatar avatar-sm avatar-circle">
-														<img class="img-responsive img-circle" src="{{ asset('main/img/user3.png') }}" alt="avatar"/>
-													</div>
-													<div class="sl-content">
-														<span class="inline-block capitalize-font   pull-left message-per">Ezequiel Merideth</span>
-														<span class="inline-block font-11  pull-right message-time">29 Jan</span>
-														<div class="clearfix"></div>
-														<span class=" truncate message-subject"> item support message</span>
-														<p class="txt-grey truncate">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</p>
-													</div>
-												</div>
-											</a>
-											<a href="javascript:void(0)">
-												<div class="sl-item unread-message">
-													<div class="sl-avatar avatar avatar-sm avatar-circle">
-														<img class="img-responsive img-circle" src="{{ asset('main/img/user4.png') }}" alt="avatar"/>
-													</div>
-													<div class="sl-content">
-														<span class="inline-block capitalize-font   pull-left message-per">Jonnie Metoyer</span>
-														<span class="inline-block font-11  pull-right message-time">27 Jan</span>
-														<div class="clearfix"></div>
-														<span class=" truncate message-subject">Help with beavis contact form</span>
-														<p class="txt-grey truncate">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</p>
-													</div>
-												</div>
-											</a>
-											<a href="javascript:void(0)">
-												<div class="sl-item">
-													<div class="sl-avatar avatar avatar-sm avatar-circle">
-														<img class="img-responsive img-circle" src="{{ asset('main/img/user.png') }}" alt="avatar"/>
-													</div>
-													<div class="sl-content">
-														<span class="inline-block capitalize-font   pull-left message-per">Priscila Shy</span>
-														<span class="inline-block font-11  pull-right message-time">19 Jan</span>
-														<div class="clearfix"></div>
-														<span class=" truncate message-subject">Your uploaded theme is been selected</span>
-														<p class="txt-grey truncate">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</p>
-													</div>
-												</div>
-											</a>
-											<a href="javascript:void(0)">
-												<div class="sl-item">
-													<div class="sl-avatar avatar avatar-sm avatar-circle">
-														<img class="img-responsive img-circle" src="{{ asset('main/img/user1.png') }}" alt="avatar"/>
-													</div>
-													<div class="sl-content">
-														<span class="inline-block capitalize-font   pull-left message-per">Linda Stack</span>
-														<span class="inline-block font-11  pull-right message-time">13 Jan</span>
-														<div class="clearfix"></div>
-														<span class=" truncate message-subject"> A new rating has been received</span>
-														<p class="txt-grey truncate">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</p>
-													</div>
-												</div>
-											</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div  id="todo_tab" class="tab-pane fade" role="tabpanel">
-								<div class="todo-box-wrap">
-									<div class="add-todo">
-										<a href="javascript:void(0)" class="inline-block txt-grey">
-											<i class="zmdi zmdi-more"></i>
-										</a>
-										<span class="inline-block txt-dark">todo list</span>
-										<a href="javascript:void(0)" class="inline-block text-right txt-grey"><i class="zmdi zmdi-plus"></i></a>
-										<div class="clearfix"></div>
-									</div>
-									<div class="set-height-wrap">
-										<!-- Todo-List -->
-										<ul class="todo-list nicescroll-bar">
-											<li class="todo-item">
-												<div class="checkbox checkbox-default">
-													<input type="checkbox" id="checkbox01"/>
-													<label for="checkbox01">Record The First Episode</label>
-												</div>
-											</li>
-											<li>
-												<hr class="light-grey-hr"/>
-											</li>
-											<li class="todo-item">
-												<div class="checkbox checkbox-pink">
-													<input type="checkbox" id="checkbox02"/>
-													<label for="checkbox02">Prepare The Conference Schedule</label>
-												</div>
-											</li>
-											<li>
-												<hr class="light-grey-hr"/>
-											</li>
-											<li class="todo-item">
-												<div class="checkbox checkbox-warning">
-													<input type="checkbox" id="checkbox03" checked/>
-													<label for="checkbox03">Decide The Live Discussion Time</label>
-												</div>
-											</li>
-											<li>
-												<hr class="light-grey-hr"/>
-											</li>
-											<li class="todo-item">
-												<div class="checkbox checkbox-success">
-													<input type="checkbox" id="checkbox04" checked/>
-													<label for="checkbox04">Prepare For The Next Project</label>
-												</div>
-											</li>
-											<li>
-												<hr class="light-grey-hr"/>
-											</li>
-											<li class="todo-item">
-												<div class="checkbox checkbox-danger">
-													<input type="checkbox" id="checkbox05" checked/>
-													<label for="checkbox05">Finish Up AngularJs Tutorial</label>
-												</div>
-											</li>
-											<li>
-												<hr class="light-grey-hr"/>
-											</li>
-											<li class="todo-item">
-												<div class="checkbox checkbox-purple">
-													<input type="checkbox" id="checkbox06" checked/>
-													<label for="checkbox06">Finish Infinity Project</label>
-												</div>
-											</li>
-											<li>
-												<hr class="light-grey-hr"/>
-											</li>
-										</ul>
-										<!-- /Todo-List -->
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</li>
-			</ul>
-		</div>
-		<!-- /Right Sidebar Menu -->
-
-
-
-
 
         <!-- Main Content -->
 		<div class="page-wrapper">
@@ -742,6 +344,40 @@
 	<!-- Init JavaScript -->
 	<script src="{{ asset('main/js/init.js') }}"></script>
 	<script src="{{ asset('main/js/dashboard2-data.js') }}"></script>
+
+  <script>
+    @if($message = Session::get('error'))
+    $(window).on("load",function(){
+    	window.setTimeout(function(){
+    		$.toast({
+    			heading: 'Kesalahan',
+    			text: '{{$message}}',
+    			position: 'top-left',
+    			loaderBg:'#e3c94b',
+    			icon: '',
+    			hideAfter: 3500,
+    			stack: 6
+    		});
+    	}, 3000);
+    });
+    @endif
+    @if($message = Session::get('success'))
+    $(window).on("load",function(){
+    	window.setTimeout(function(){
+    		$.toast({
+    			heading: 'Sukses',
+    			text: '{{$message}}',
+    			position: 'top-left',
+    			loaderBg:'#e3c94b',
+    			icon: '',
+    			hideAfter: 3500,
+    			stack: 6
+    		});
+    	}, 3000);
+    });
+    @endif
+</script>
+@yield('js')
 </body>
 
 </html>
