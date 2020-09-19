@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BahanController extends Controller
 {
@@ -13,7 +14,8 @@ class BahanController extends Controller
      */
     public function index()
     {
-        return view('bahan.index');
+        $bahan = \App\Bahan::all();
+        return view('bahan.index', compact('bahan'));
     }
 
     /**
@@ -23,7 +25,8 @@ class BahanController extends Controller
      */
     public function create()
     {
-        //
+        $bahan = \App\Bahan::all();
+        return view('bahan.tambah', compact('bahan'));
     }
 
     /**
@@ -34,7 +37,26 @@ class BahanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $input = $request->all();
+      if(!isset($input['bahan'])){
+        return redirect()->route('bahan.create')->with('error', 'Harap melengkapi form isian');
+      }
+      if( isset($input['bahan']) && $input['bahan']=="bahan-baru" ){
+        DB::table('Bahan')->insert([
+          'nama'   => $input['nama'],
+          'jumlah' => $input['stok'],
+          'satuan' => $input['satuan']
+        ]);
+        $state = 'ditambahkan';
+      }else{
+        $r = DB::table('bahan')->where('id', $input['bahan'])
+          ->update([
+            'jumlah' => $input['stok'],
+            'satuan' => $input['satuan']
+        ]);
+        $state = 'diperbarui';
+      }
+      return redirect()->route('bahan.index')->with('success', 'Bahan berhasil '.$state);
     }
 
     /**
@@ -79,6 +101,11 @@ class BahanController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $bahan = \App\Bahan::find($id);
+      if($bahan->get()->isEmpty()){
+          redirect()->route('bahan.index')->with('error', 'Gagal menghapus bahan/ bahan tidak ditemukan.');
+      }
+      $bahan->delete();
+      return redirect()->route('bahan.index')->with('success', 'Bahan berhasil dihapus');
     }
 }

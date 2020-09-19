@@ -19,7 +19,7 @@ Route::get('/', 'HomeController@landing')->name('landing');
 
 Auth::routes();
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/dasbor', 'HomeController@index')->name('home');
     Route::get('/kalkulator', 'HomeController@kalkulator')->name('kalkulator')->middleware('role:produsen');;
     Route::get('/profil', 'HomeController@profil')->name('profil'); // unimplemented
     Route::post('/profil', 'HomeController@store')->name('profilstore')->middleware('role:produsen');
@@ -54,7 +54,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/tambah', 'BahanController@store')->name('store')->middleware('role:produsen');
         Route::get('/{id}/edit', 'BahanController@edit')->name('edit')->middleware('role:produsen');
         Route::patch('/{id}/edit', 'BahanController@update')->name('update')->middleware('role:produsen');
-        Route::delete('/{id}/hapus', 'BahanController@destroy')->name('delete')->middleware('role:produsen');
+        Route::get('/{id}/hapus', 'BahanController@destroy')->name('delete')->middleware('role:produsen');
     });
     Route::group(['as' => 'pupuk.' , 'prefix' => 'pupuk'], function () {                // unimplemented
         Route::get('/', 'PupukController@index')->name('index')->middleware('role:produsen|pelanggan');
@@ -62,8 +62,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/tambah', 'PupukController@create')->name('create')->middleware('role:produsen');
         Route::post('/tambah', 'PupukController@store')->name('store')->middleware('role:produsen');
         Route::get('/{id}/edit', 'PupukController@edit')->name('edit')->middleware('role:produsen');
-        Route::patch('/{id}/edit', 'PupukController@update')->name('update')->middleware('role:produsen');
-        Route::delete('/{id}/hapus', 'PupukController@destroy')->name('delete')->middleware('role:produsen');
+        Route::post('/{id}/edit', 'PupukController@update')->name('update')->middleware('role:produsen');
+        Route::get('/{id}/hapus', 'PupukController@destroy')->name('delete')->middleware('role:produsen');
+        Route::get('/{id}/revert', 'PupukController@revert')->name('revert')->middleware('role:produsen');
     });
     Route::group(['as' => 'pengaturan.' , 'prefix' => 'pengaturan'], function () {                // unimplemented
         Route::get('/website', 'PengaturanController@website')->name('website')->middleware('role:produsen');

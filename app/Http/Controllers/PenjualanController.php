@@ -13,7 +13,8 @@ class PenjualanController extends Controller
      */
     public function index()
     {
-        //
+        $penjualan = \App\Pemesanan::all();
+        return view('penjualan.index',compact('penjualan'));
     }
 
     /**
@@ -23,7 +24,7 @@ class PenjualanController extends Controller
      */
     public function create()
     {
-        //
+        return view('penjualan.tambah');
     }
 
     /**

@@ -148,7 +148,7 @@
 					<a href="javascript:void(0);" data-toggle="collapse" data-target="#chart_dr"><div class="pull-left"><i class="zmdi zmdi-chart-donut mr-20"></i><span class="right-nav-text">Penjualan </span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 					<ul id="chart_dr" class="collapse collapse-level-1 two-col-list">
 						<li>
-							<a href="{{route('penjualan.index')}}">Penjualan</a>
+							<a href="{{route('penjualan.index')}}">Pesanan</a>
 						</li>
 						<li>
 							<a href="{{route('penjualan.create')}}">Tambah transaksi</a>
@@ -159,7 +159,7 @@
           </ul>
 				</li>
 				<li>
-					<a href="javascript:void(0);" data-toggle="collapse" data-target="#ecom_dr"><div class="pull-left"><i class="zmdi zmdi-shopping-basket mr-20"></i><span class="right-nav-text">Produk</span></div><div class="pull-right"><span class="label label-success">7</span></div><div class="clearfix"></div></a>
+					<a href="javascript:void(0);" data-toggle="collapse" data-target="#ecom_dr"><div class="pull-left"><i class="zmdi zmdi-shopping-basket mr-20"></i><span class="right-nav-text">Produk</span></div><div class="pull-right"> <!--<span class="label label-success">7</span>--> <i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 					<ul id="ecom_dr" class="collapse collapse-level-1">
             <li>
 							<a href="{{route('bahan.index')}}">Bahan Baku</a>
@@ -170,9 +170,9 @@
 						<li>
 							<a href="{{route('pupuk.create')}}">Tambah Pupuk</a>
 						</li>
-						<li>
+						<!-- <li>
 							<a href="{{route('pesanan.index')}}">Pesanan</a>
-						</li>
+						</li> -->
 						<li>
 							<a href="{{route('pupuk.arsip')}}">Pupuk Diarsipkan</a>
 						</li>
@@ -195,7 +195,7 @@
 							<a href="{{route('pengaturan.website')}}">Detail Usaha</a>
 						</li>
 						<li>
-							<a href="{{route('pengaturan.maps')}}">Kontak</a>
+							<a href="{{route('pengaturan.kontak')}}">Kontak</a>
 						</li>
 					</ul>
 				</li>
@@ -358,7 +358,7 @@
     			hideAfter: 3500,
     			stack: 6
     		});
-    	}, 3000);
+    	}, 1000);
     });
     @endif
     @if($message = Session::get('success'))
@@ -373,7 +373,7 @@
     			hideAfter: 3500,
     			stack: 6
     		});
-    	}, 3000);
+    	}, 1000);
     });
     @endif
 </script>

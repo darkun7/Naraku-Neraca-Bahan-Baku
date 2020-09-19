@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @property int $id
  * @property string $nama
@@ -15,17 +15,18 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Bahan extends Model
 {
+    use SoftDeletes;
     /**
      * The table associated with the model.
      *
      * @var string
      */
     protected $table = 'bahan';
-
+    protected $dates = ['deleted_at'];
     /**
      * @var array
      */
-    protected $fillable = ['nama', 'jumlah', 'created_at', 'updated_at', 'deleted_at'];
+    protected $fillable = ['nama', 'jumlah', 'satuan', 'created_at', 'updated_at', 'deleted_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

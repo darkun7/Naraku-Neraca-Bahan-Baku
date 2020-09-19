@@ -25,7 +25,8 @@ class HomeController extends Controller
     {
       // $web = \App\Setting::all();
       $web = \App\Setting::findOrFail(0);
-      return view('front.home',compact('web'));
+      $pupuk = \App\Pupuk::all();
+      return view('front.home',compact('web', 'pupuk'));
     }
 
     public function index()

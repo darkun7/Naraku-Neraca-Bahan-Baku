@@ -41,17 +41,19 @@
 
                       <tbody>
 
+                        @foreach ($pupuk as $key => $value)
                         <tr>
-                          <td>Granul</td>
-                          <td>Rp {{number_format("1000000",0,",",".")}}</td>
-                          <td>5</td>
-                          <td><img src="{{asset('')}}" alt="Granul"> </td>
+                          <td>{{$value['nama']}}</td>
+                          <td>Rp {{number_format($value['harga'],0,",",".")}}</td>
+                          <td>{{$value['jumlah']}}</td>
+                          <td><img src="{{asset($value['gambar'])}}" alt="{{$value['name']}}" style="height:90px;"> </td>
                           <td>
-                            <a class="btn btn-primary btn-icon-anim btn-square btn-sm"><i class="fa fa-info"></i></a>
-                            <a class="btn btn-warning btn-icon-anim btn-square btn-sm"><i class="fa fa-pencil"></i></a>
-                            <a class="btn btn-danger btn-icon-anim btn-square btn-sm"><i class="fa fa-trash-o"></i></a>
+                            <!-- <a class="btn btn-primary btn-icon-anim btn-square btn-sm"><i class="fa fa-info"></i></a> -->
+                            <a class="btn btn-warning btn-icon-anim btn-square btn-sm" href="/pupuk/{{$value['id']}}/edit"><i class="fa fa-pencil"></i></a>
+                            <a class="btn btn-danger btn-icon-anim btn-square btn-sm" href="/pupuk/{{$value['id']}}/hapus" onclick="return confirm('Apakah yakin untuk menghapus?\n Pupuk yang dihapus akan dipindah pada menu `Pupuk Diarsipkan`')"><i class="fa fa-trash-o"></i></a>
                           </td>
                         </tr>
+                        @endforeach
 
                       </tbody>
 

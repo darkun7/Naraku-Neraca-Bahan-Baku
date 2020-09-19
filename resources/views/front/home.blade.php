@@ -7,6 +7,12 @@
 			#green{
 				background-color: #27ae60;
 			}
+			.top-page p{
+				margin-bottom: 5px !important;
+			}
+			.top-page h1{
+				margin-bottom: 15px !important;
+			}
 	</style>
 @endsection
 
@@ -26,9 +32,9 @@
 					<div class="holder">
 						<div class="container">
 							<div class="row">
-								<div class="col-xs-12">
-									<h1>{{$web['jumbotron_title']}}</h1>
-									<p>{{$web['jumbotron_text']}}</p>
+								<div class="col-xs-12 top-page">
+									<h1><?php echo $web['jumbotron_title'] ?></h1>
+									<p><?php echo $web['jumbotron_text'] ?></p>
 									<div class="btn-holder">
 										<a href="/register" id="green" class="btn-primary text-center text-uppercase active md-round">Daftar</a>
 										<a href="#" class="btn-primary text-center text-uppercase md-round">Selengkapnya</a>
@@ -91,65 +97,27 @@
 						<!-- testimonail slider of the page -->
 						<div class="testimonail-slider">
 							<!-- slide of the page -->
+							@foreach ($pupuk as $key => $value)
+
 							<blockquote class="slide text-center">
-								<div class="img-holder round"><img src="{{ asset('assets/images/img05.jpg') }}" alt="image description" class="img-responsive"></div>
+								<div class="img-holder"><img src="{{ asset($value['gambar']) }}" alt="image description" class="img-responsive"></div>
 								<cite>
-									<strong>David Ramon</strong>
-									<a href="#">www.sitename.com</a>
+									<strong>{{$value['nama']}}</strong>
+									<h4>{{$value['harga']}}</h4>
 								</cite>
-								<q>Lorem ipsum dolor sit amet, duis metus amet in purus, vitae donec vestibulum tincidunt massa sit, convallis ipsum pede quisque arcu, nunc distinctio.</q>
+								<?php
+									if( strlen($value['deskripsi'])>150 ){
+										$text = strip_tags($value['deskripsi']);
+										$text = substr($text, 0, 150);
+										$text .= "...";
+										$value['deskripsi'] = $text;
+									}
+								 ?>
+								<q>{{$value['deskripsi']}}</q>
 							</blockquote>
-							<!-- slide of the page end -->
-							<!-- slide of the page -->
-							<blockquote class="slide text-center">
-								<div class="img-holder round"><img src="{{ asset('assets/images/img06.jpg') }}" alt="image description" class="img-responsive"></div>
-								<cite>
-									<strong>Jennifer Duren</strong>
-									<a href="#">www.sitename.com</a>
-								</cite>
-								<q>Lorem ipsum dolor sit amet, duis metus amet in purus, vitae donec vestibulum tincidunt massa sit, convallis ipsum pede quisque arcu, nunc distinctio.</q>
-							</blockquote>
-							<!-- slide of the page end -->
-							<!-- slide of the page -->
-							<blockquote class="slide text-center">
-								<div class="img-holder round"><img src="{{ asset('assets/images/img07.jpg') }}" alt="image description" class="img-responsive"></div>
-								<cite>
-									<strong>Martin Jones</strong>
-									<a href="#">www.sitename.com</a>
-								</cite>
-								<q>Lorem ipsum dolor sit amet, duis metus amet in purus, vitae donec vestibulum tincidunt massa sit, convallis ipsum pede quisque arcu, nunc distinctio.</q>
-							</blockquote>
-							<!-- slide of the page end -->
-							<!-- slide of the page -->
-							<blockquote class="slide text-center">
-								<div class="img-holder round"><img src="{{ asset('assets/images/img05.jpg') }}" alt="image description" class="img-responsive"></div>
-								<cite>
-									<strong>David Ramon</strong>
-									<a href="#">www.sitename.com</a>
-								</cite>
-								<q>Lorem ipsum dolor sit amet, duis metus amet in purus, vitae donec vestibulum tincidunt massa sit, convallis ipsum pede quisque arcu, nunc distinctio.</q>
-							</blockquote>
-							<!-- slide of the page end -->
-							<!-- slide of the page -->
-							<blockquote class="slide text-center">
-								<div class="img-holder round"><img src="{{ asset('assets/images/img05.jpg') }}" alt="image description" class="img-responsive"></div>
-								<cite>
-									<strong>David Ramon</strong>
-									<a href="#">www.sitename.com</a>
-								</cite>
-								<q>Lorem ipsum dolor sit amet, duis metus amet in purus, vitae donec vestibulum tincidunt massa sit, convallis ipsum pede quisque arcu, nunc distinctio.</q>
-							</blockquote>
-							<!-- slide of the page end -->
-							<!-- slide of the page -->
-							<blockquote class="slide text-center">
-								<div class="img-holder round"><img src="{{ asset('assets/images/img06.jpg') }}" alt="image description" class="img-responsive"></div>
-								<cite>
-									<strong>Jennifer Duren</strong>
-									<a href="#">www.sitename.com</a>
-								</cite>
-								<q>Lorem ipsum dolor sit amet, duis metus amet in purus, vitae donec vestibulum tincidunt massa sit, convallis ipsum pede quisque arcu, nunc distinctio.</q>
-							</blockquote>
-							<!-- slide of the page end -->
+
+							@endforeach
+
 						</div>
 						<!-- testimonail slider of the page end -->
 					</div>
