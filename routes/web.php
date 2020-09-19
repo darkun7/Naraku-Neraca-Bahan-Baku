@@ -13,16 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', 'HomeController@landing')->name('landing');
+Route::get('/tentang', 'HomeController@tentang')->name('tentang');
 // Route::get('/', function () {
 //     return view('front.home');
 // });
 
 Auth::routes();
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/dasbor', 'HomeController@index')->name('home');
+    Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/kalkulator', 'HomeController@kalkulator')->name('kalkulator')->middleware('role:produsen');;
-    Route::get('/profil', 'HomeController@profil')->name('profil'); // unimplemented
-    Route::post('/profil', 'HomeController@store')->name('profilstore')->middleware('role:produsen');
+    Route::get('/profil', 'ProfilController@index')->name('profil'); // unimplemented
+    Route::post('/profil', 'ProfilController@update')->name('profilstore')->middleware('role:produsen');
     Route::group(['as' => 'lahan.' , 'prefix' => 'lahan'], function () {                // unimplemented
         Route::get('/', 'LahanController@index')->name('lahan')->middleware('role:pelanggan');
         Route::get('/tambah', 'LahanController@create')->name('create')->middleware('role:pelanggan');
@@ -32,10 +33,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('/{id}/hapus', 'LahanController@destroy')->name('delete')->middleware('role:pelanggan');
     });
     Route::group(['as' => 'penjualan.' , 'prefix' => 'penjualan'], function () {                // unimplemented
-        Route::get('/', 'PenjualanController@index')->name('index')->middleware('role:pelanggan|produsen');
+        Route::get('/', 'PenjualanController@index')->name('index')->middleware('role:produsen');
         Route::get('/tambah', 'PenjualanController@create')->name('create')->middleware('role:produsen');
-        Route::post('/tambah', 'PenjualanController@store')->name('store')->middleware('role:produsen');
+        Route::post('/tambah', 'PenjualanController@store')->name('store')->middleware('role:pelanggan|produsen');
         Route::get('/{id}/edit', 'PenjualanController@edit')->name('edit')->middleware('role:produsen');
+        Route::get('/{id}/set/{status}', 'PenjualanController@setstatus')->name('edit')->middleware('role:pelanggan|produsen');
         Route::patch('/{id}/edit', 'PenjualanController@update')->name('update')->middleware('role:produsen');
         Route::delete('/{id}/hapus', 'PenjualanController@destroy')->name('delete')->middleware('role:produsen');
     });
@@ -58,7 +60,8 @@ Route::group(['middleware' => ['auth']], function () {
     });
     Route::group(['as' => 'pupuk.' , 'prefix' => 'pupuk'], function () {                // unimplemented
         Route::get('/', 'PupukController@index')->name('index')->middleware('role:produsen|pelanggan');
-        Route::get('/arsip', 'PupukController@arsip')->name('arsip')->middleware('role:produsen|pelanggan');
+        Route::get('/{id}', 'PupukController@show')->name('show')->middleware('role:produsen|pelanggan');
+        Route::get('/arsip', 'PupukController@arsip')->name('arsip')->middleware('role:produsen');
         Route::get('/tambah', 'PupukController@create')->name('create')->middleware('role:produsen');
         Route::post('/tambah', 'PupukController@store')->name('store')->middleware('role:produsen');
         Route::get('/{id}/edit', 'PupukController@edit')->name('edit')->middleware('role:produsen');

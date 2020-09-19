@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class PesananController extends Controller
 {
@@ -13,7 +15,8 @@ class PesananController extends Controller
      */
     public function index()
     {
-        //
+      $pemesanan = \App\Pemesanan::where('nama_pemesan', Auth::user()->name)->where('status','!=', 'lunas')->get();
+      return view('pesanan.index',compact('pemesanan'));
     }
 
     /**
@@ -21,6 +24,13 @@ class PesananController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function riwayatpesan()
+     {
+       $pemesanan = \App\Pemesanan::where('nama_pemesan', Auth::user()->name)->where('status','lunas')->get();
+       return view('pesanan.riwayatpesan',compact('pemesanan'));
+     }
+
+
     public function create()
     {
         //

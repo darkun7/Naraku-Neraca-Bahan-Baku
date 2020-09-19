@@ -28,6 +28,12 @@ class HomeController extends Controller
       $pupuk = \App\Pupuk::all();
       return view('front.home',compact('web', 'pupuk'));
     }
+    public function tentang()
+    {
+      // $web = \App\Setting::all();
+      $web = \App\Setting::findOrFail(0);
+      return view('front.tentang',compact('web'));
+    }
 
     public function index()
     {

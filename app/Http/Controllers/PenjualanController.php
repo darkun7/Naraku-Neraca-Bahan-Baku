@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PenjualanController extends Controller
 {
@@ -13,8 +14,8 @@ class PenjualanController extends Controller
      */
     public function index()
     {
-        $penjualan = \App\Pemesanan::all();
-        return view('penjualan.index',compact('penjualan'));
+        $pemesanan = \App\Pemesanan::all();
+        return view('penjualan.index',compact('pemesanan'));
     }
 
     /**
@@ -24,7 +25,8 @@ class PenjualanController extends Controller
      */
     public function create()
     {
-        return view('penjualan.tambah');
+        $pupuk = \App\Pupuk::all();
+        return view('penjualan.tambah', compact('pupuk'));
     }
 
     /**
@@ -35,7 +37,33 @@ class PenjualanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        foreach ($input['jumlah'] as $key => $value) {
+          $pesanan = \App\Pemesanan::create([
+            'nama_pemesan' => $input['nama_pemesan'],
+            'id_pupuk' => $input['id_pupuk'][$key],
+            'jumlah' => $input['jumlah'][$key],
+            'alamat' => $input['alamat'],
+            'kontak' => $input['kontak']
+          ]);
+        }
+        if(Auth::user()->level == 'admin'){
+          return redirect()->route('penjualan.index')->with('success', 'Pesanan berhasil ditambahkan');
+        }else{
+          return redirect()->route('pesanan.index')->with('success', 'Pesanan berhasil ditambahkan');
+        }
+
+    }
+
+    public function setstatus($id, $status){
+        $pesanan = \App\Pemesanan::findOrFail($id);
+        if( $status == "belumbayar"){
+            $status = 'belum bayar';
+        }
+        $pesanan->update([
+          'status'      => $status
+        ]);
+        return redirect()->route('penjualan.index')->with('success', 'Status pesanan berhasil diperbarui');
     }
 
     /**
@@ -80,6 +108,11 @@ class PenjualanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pesanan = \App\Pemesanan::find($id);
+        if($pesanan->get()->isEmpty()){
+            redirect()->route('pupuk.index')->with('error', 'Gagal menghapus pesanan/ pesanan tidak ditemukan.');
+        }
+        $pesanan->delete();
+        return redirect()->route('pupuk.index')->with('success', 'Pesanan berhasil dihapus');
     }
 }

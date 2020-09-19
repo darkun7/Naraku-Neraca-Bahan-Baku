@@ -38,7 +38,7 @@
 	<style class="color_css"></style>
   @yield('css')
 </head>
-<body>
+<body class="boxed-v pattern11">
 	@yield('content')
 	<!-- popup-holder of the page end here -->
 	<!-- include jQuery -->

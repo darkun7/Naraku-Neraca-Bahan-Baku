@@ -22,7 +22,7 @@
 	@include('includes.landing')
 	<!-- header of the page end -->
 	<!-- main of the page -->
-	<main id="main">
+	<main id="main" style="background-color: #ebedeb;">
 		<!-- main slider of the page -->
 		<section class="main-slider" data-scroll-index="0">
 			<!-- slide of the page -->
@@ -36,8 +36,8 @@
 									<h1><?php echo $web['jumbotron_title'] ?></h1>
 									<p><?php echo $web['jumbotron_text'] ?></p>
 									<div class="btn-holder">
-										<a href="/register" id="green" class="btn-primary text-center text-uppercase active md-round">Daftar</a>
-										<a href="#" class="btn-primary text-center text-uppercase md-round">Selengkapnya</a>
+										<a href="{{route('register')}}" id="green" class="btn-primary text-center text-uppercase active md-round">Daftar</a>
+										<a href="{{route('tentang')}}" class="btn-primary text-center text-uppercase md-round">Selengkapnya</a>
 									</div>
 								</div>
 							</div>
@@ -132,7 +132,7 @@
 					<header class="col-xs-12 header text-center">
 						<h4>Pembelian Pupuk</h4>
 						<p style="margin-bottom: 20px;">Karya Tani 2 hanya menyediakan produk untuk anggota, <br>sehingga untuk dapat melakukan pemesanan diharap untuk melakukan pendaftaran/ login terlebih dahulu.<br></p>
-            <a href="/register" class="btn-primary text-center text-uppercase active md-round">Pesan Sekarang</a>
+            <a href="{{route('pesanan.create')}}" class="btn-primary text-center text-uppercase active md-round">Pesan Sekarang</a>
           </header>
 				</div>
 

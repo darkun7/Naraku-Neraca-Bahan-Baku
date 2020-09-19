@@ -13,10 +13,10 @@
           <!-- nav of the page -->
           <nav id="nav">
             <ul class="list-unstyled">
-              <li><a href="/" data-scroll-nav="0">Beranda</a></li>
-              <li><a href="/" data-scroll-nav="1">Fasilitas</a></li>
-              <li><a href="/" data-scroll-nav="2">Produk</a></li>
-              <li><a href="/" data-scroll-nav="3">Pembelian</a></li>
+              <li><a href="{{ route('landing') }}" data-scroll-nav="0">Beranda</a></li>
+              <li><a href="{{ route('landing') }}" data-scroll-nav="1">Fasilitas</a></li>
+              <li><a href="{{ route('landing') }}" data-scroll-nav="2">Produk</a></li>
+              <li><a href="{{ route('landing') }}" data-scroll-nav="3">Pembelian</a></li>
             </ul>
           </nav>
           <!-- nav of the page end -->

@@ -74,7 +74,9 @@ class PupukController extends Controller
      */
     public function show($id)
     {
-        //
+        $pupuk = Pupuk::findOrFail($id);
+        $bahan = Bahan::all();
+        return view('pupuk.show', compact('bahan', 'pupuk'));
     }
 
     /**

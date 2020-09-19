@@ -153,9 +153,9 @@
 						<li>
 							<a href="{{route('penjualan.create')}}">Tambah transaksi</a>
 						</li>
-            <li>
+            <!-- <li>
 							<a href="#">Laporan</a>
-						</li>
+						</li> -->
           </ul>
 				</li>
 				<li>
@@ -221,7 +221,7 @@
         @endrole
         @role('pelanggan')
         <li>
-					<a href="javascript:void(0);" data-toggle="collapse" data-target="#ecom_dr"><div class="pull-left"><i class="zmdi zmdi-shopping-basket mr-20"></i><span class="right-nav-text">Produk</span></div><div class="pull-right"><span class="label label-success">7</span></div><div class="clearfix"></div></a>
+					<a href="javascript:void(0);" data-toggle="collapse" data-target="#ecom_dr"><div class="pull-left"><i class="zmdi zmdi-shopping-basket mr-20"></i><span class="right-nav-text">Produk</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i><!--<span class="label label-success">7</span>--></div><div class="clearfix"></div></a>
 					<ul id="ecom_dr" class="collapse collapse-level-1">
 						<li>
 							<a href="{{route('pupuk.index')}}">Daftar Pupuk</a>
