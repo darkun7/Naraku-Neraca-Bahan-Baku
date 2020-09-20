@@ -29,8 +29,8 @@
       								<div  class="panel-body pb-0">
       									<div  class="tab-struct custom-tab-1">
       										<ul role="tablist" class="nav nav-tabs nav-tabs-responsive" id="myTabs_8">
-      											<li class="active" role="presentation"><a  data-toggle="tab" id="profile_tab_8" role="tab" href="#profile_8" aria-expanded="false"><span>profile</span></a></li>
-      											<li  role="presentation" class="next"><a aria-expanded="true"  data-toggle="tab" role="tab" id="follo_tab_8" href="#follo_8"><span>followers<span class="inline-block">(246)</span></span></a></li>
+      											<li class="active" role="presentation"><a  data-toggle="tab" id="profile_tab_8" role="tab" href="#profile_8" aria-expanded="false"><span>Profil</span></a></li>
+      											<li  role="presentation" class="next"><a aria-expanded="true"  data-toggle="tab" role="tab" id="follo_tab_8" href="#follo_8"><span>Akun<span class="inline-block"> </span></span></a></li>
       										</ul>
 
       										<div class="tab-content" id="myTabContent_8">
@@ -42,65 +42,46 @@
       																<div class="panel-body pa-0">
       																	<div class="col-sm-12 col-xs-12">
       																		<div class="form-wrap">
-      																			<form action="#">
+      																			<form method="post" action="{{route('profilstore')}}">
+                                              @csrf
       																				<div class="form-body overflow-hide">
       																					<div class="form-group">
-      																						<label class="control-label mb-10" for="exampleInputuname_01">Name</label>
+      																						<label class="control-label mb-10" for="exampleInputuname_01">Nama</label>
       																						<div class="input-group">
+
       																							<div class="input-group-addon"><i class="icon-user"></i></div>
-      																							<input type="text" class="form-control" id="exampleInputuname_01" placeholder="willard bryant">
+      																							<input type="text" class="form-control" name="name" id="exampleInputuname_01" placeholder="Nama Lengkap" value="{{$user['name']}}" required>
       																						</div>
       																					</div>
+
       																					<div class="form-group">
-      																						<label class="control-label mb-10" for="exampleInputEmail_01">Email address</label>
-      																						<div class="input-group">
-      																							<div class="input-group-addon"><i class="icon-envelope-open"></i></div>
-      																							<input type="email" class="form-control" id="exampleInputEmail_01" placeholder="xyz@gmail.com">
-      																						</div>
-      																					</div>
-      																					<div class="form-group">
-      																						<label class="control-label mb-10" for="exampleInputContact_01">Contact number</label>
+      																						<label class="control-label mb-10" for="exampleInputContact_01">Nomor Handphone</label>
       																						<div class="input-group">
       																							<div class="input-group-addon"><i class="icon-phone"></i></div>
-      																							<input type="email" class="form-control" id="exampleInputContact_01" placeholder="+102 9388333">
+      																							<input type="number" class="form-control" name="phone_number" id="exampleInputContact_01" placeholder="6281394626994" value="{{$user['phone_number']}}" required>
       																						</div>
       																					</div>
-      																					<div class="form-group">
-      																						<label class="control-label mb-10" for="exampleInputpwd_01">Password</label>
+
+                                                <div class="form-group">
+      																						<label class="control-label mb-10" for="alamat">Alamat</label>
+      																						<div class="input-group">
+      																							<div class="input-group-addon"><i class="icon-home"></i></div>
+                                                    <textarea name="alamat" rows="4" cols="80" class="form-control" id="" required>{{$user['alamat']}}</textarea>
+      																						</div>
+      																					</div>
+                                                <hr>
+                                                <div class="form-group">
+      																						<label class="control-label mb-10" for="exampleInputpwd_02" required>Kata Sandi</label>
+                                                  <p>Masukkan kata sandi untuk konfirmasi</p>
       																						<div class="input-group">
       																							<div class="input-group-addon"><i class="icon-lock"></i></div>
-      																							<input type="password" class="form-control" id="exampleInputpwd_01" placeholder="Enter pwd" value="password">
+      																							<input type="password" class="form-control" id="exampleInputpwd_02" name="old_password" placeholder="Kata Sandi" value="" required>
       																						</div>
       																					</div>
-      																					<div class="form-group">
-      																						<label class="control-label mb-10">Gender</label>
-      																						<div>
-      																							<div class="radio">
-      																								<input type="radio" name="radio1" id="radio_01" value="option1" checked="">
-      																								<label for="radio_01">
-      																								M
-      																								</label>
-      																							</div>
-      																							<div class="radio">
-      																								<input type="radio" name="radio1" id="radio_02" value="option2">
-      																								<label for="radio_02">
-      																								F
-      																								</label>
-      																							</div>
-      																						</div>
-      																					</div>
-      																					<div class="form-group">
-      																						<label class="control-label mb-10">Country</label>
-      																						<select class="form-control" data-placeholder="Choose a Category" tabindex="1">
-      																							<option value="Category 1">USA</option>
-      																							<option value="Category 2">Austrailia</option>
-      																							<option value="Category 3">India</option>
-      																							<option value="Category 4">UK</option>
-      																						</select>
-      																					</div>
+
       																				</div>
       																				<div class="form-actions mt-10">
-      																					<button type="submit" class="btn btn-primary mr-10 mb-30">Update profile</button>
+      																					<button type="submit" class="btn btn-primary mr-10 mb-30">Perbarui Profil</button>
       																				</div>
       																			</form>
       																		</div>
@@ -113,69 +94,47 @@
       											</div>
 
       											<div  id="follo_8" class="tab-pane fade" role="tabpanel">
-      												<div class="row">
+                              <div class="row">
       													<div class="col-lg-12">
-      														<div class="followers-wrap">
-      															<ul class="followers-list-wrap">
-      																<li class="follow-list">
-      																	<div class="follo-body">
-      																		<div class="follo-data">
-      																			<img class="user-img img-circle"  src="../img/user.png" alt="user"/>
-      																			<div class="user-data">
-      																				<span class="name block capitalize-font">Clay Masse</span>
-      																				<span class="time block truncate txt-grey">No one saves us but ourselves.</span>
-      																			</div>
-      																			<button class="btn btn-primary pull-right btn-xs fixed-btn">Follow</button>
-      																			<div class="clearfix"></div>
-      																		</div>
-      																		<div class="follo-data">
-      																			<img class="user-img img-circle"  src="../img/user1.png" alt="user"/>
-      																			<div class="user-data">
-      																				<span class="name block capitalize-font">Evie Ono</span>
-      																				<span class="time block truncate txt-grey">Unity is strength</span>
-      																			</div>
-      																			<button class="btn btn-primary btn-outline pull-right btn-xs fixed-btn">following</button>
-      																			<div class="clearfix"></div>
-      																		</div>
-      																		<div class="follo-data">
-      																			<img class="user-img img-circle"  src="../img/user2.png" alt="user"/>
-      																			<div class="user-data">
-      																				<span class="name block capitalize-font">Madalyn Rascon</span>
-      																				<span class="time block truncate txt-grey">Respect yourself if you would have others respect you.</span>
-      																			</div>
-      																			<button class="btn btn-primary btn-outline pull-right btn-xs fixed-btn">following</button>
-      																			<div class="clearfix"></div>
-      																		</div>
-      																		<div class="follo-data">
-      																			<img class="user-img img-circle"  src="../img/user3.png" alt="user"/>
-      																			<div class="user-data">
-      																				<span class="name block capitalize-font">Mitsuko Heid</span>
-      																				<span class="time block truncate txt-grey">I’m thankful.</span>
-      																			</div>
-      																			<button class="btn btn-primary pull-right btn-xs fixed-btn">Follow</button>
-      																			<div class="clearfix"></div>
-      																		</div>
-      																		<div class="follo-data">
-      																			<img class="user-img img-circle"  src="../img/user.png" alt="user"/>
-      																			<div class="user-data">
-      																				<span class="name block capitalize-font">Ezequiel Merideth</span>
-      																				<span class="time block truncate txt-grey">Patience is bitter.</span>
-      																			</div>
-      																			<button class="btn btn-primary pull-right btn-xs fixed-btn">Follow</button>
-      																			<div class="clearfix"></div>
-      																		</div>
-      																		<div class="follo-data">
-      																			<img class="user-img img-circle"  src="../img/user1.png" alt="user"/>
-      																			<div class="user-data">
-      																				<span class="name block capitalize-font">Jonnie Metoyer</span>
-      																				<span class="time block truncate txt-grey">Genius is eternal patience.</span>
-      																			</div>
-      																			<button class="btn btn-primary btn-outline pull-right btn-xs fixed-btn">following</button>
-      																			<div class="clearfix"></div>
+      														<div class="">
+      															<div class="panel-wrapper collapse in">
+      																<div class="panel-body pa-0">
+      																	<div class="col-sm-12 col-xs-12">
+      																		<div class="form-wrap">
+      																			<form method="post" action="{{route('profilstore')}}">
+                                              @csrf
+      																				<div class="form-body overflow-hide">
+                                                <div class="form-group">
+      																						<label class="control-label mb-10" for="exampleInputEmail_01" required>Alamat Email</label>
+      																						<div class="input-group">
+      																							<div class="input-group-addon"><i class="icon-envelope-open"></i></div>
+      																							<input type="email" class="form-control" id="exampleInputEmail_01" name="email" value="{{$user['email']}}" placeholder="xyz@gmail.com" required>
+      																						</div>
+      																					</div>
+																						    <div class="form-group">
+      																						<label class="control-label mb-10" for="exampleInputpwd_01">Kata Sandi Baru</label>
+      																						<div class="input-group">
+      																							<div class="input-group-addon"><i class="icon-lock"></i></div>
+      																							<input type="password" class="form-control" id="exampleInputpwd_01" name="password" placeholder="Kata Sandi Baru" value="" required>
+      																						</div>
+      																					</div>
+
+                                                <div class="form-group">
+      																						<label class="control-label mb-10" for="exampleInputpwd_02">Kata Sandi Lama</label>
+      																						<div class="input-group">
+      																							<div class="input-group-addon"><i class="icon-lock"></i></div>
+      																							<input type="password" class="form-control" id="exampleInputpwd_02" name="old_password" placeholder="Kata Sandi Lama" value="" required>
+      																						</div>
+      																					</div>
+      																				</div>
+      																				<div class="form-actions mt-10">
+      																					<button type="submit" class="btn btn-primary mr-10 mb-30">Simpan</button>
+      																				</div>
+      																			</form>
       																		</div>
       																	</div>
-      																</li>
-      															</ul>
+      																</div>
+      															</div>
       														</div>
       													</div>
       												</div>

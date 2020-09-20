@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ProfilController extends Controller
 {
@@ -15,7 +16,7 @@ class ProfilController extends Controller
     public function index()
     {
         $id =  Auth::user()->id;
-        $user = \App\User::find($id);
+        $user = \App\User::where('id', $id)->first();
         return view('profil.index',compact('user'));
     }
 
@@ -29,8 +30,17 @@ class ProfilController extends Controller
     {
         $input = $request->all();
         $id =  Auth::user()->id;
-        $user = \App\User::find($id);
-        $user->update($input);
-        return redirect()->route('profil.index')->with('success', 'Profil berhasil disimpan');
+        $user = \App\User::where('id', $id)->first();
+        $oldpass = $input['old_password'];
+        if(Hash::check($oldpass, $user->password)){
+          unset( $input['old_password'] );
+          if(isset($input['password'])){
+            $input['password'] = Hash::make($input['password']);
+          }
+          $user->update($input);
+          return redirect()->route('profil')->with('success', 'Profil berhasil disimpan');
+        }else{
+          return redirect()->route('profil')->with('error', 'Kata Sandi konfirmasi tidak sesuai');
+        }
     }
 }
