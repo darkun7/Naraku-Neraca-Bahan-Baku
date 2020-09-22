@@ -139,6 +139,7 @@
         </div>
       </div>
     </div>
+    @role('produsen')
     <div class="panel panel-default card-view">
       <div class="panel-wrapper collapse in">
         <div class="panel-body sm-data-box-1">
@@ -167,6 +168,7 @@
           </div>
         </div>
     </div>
+    @endrole
   </div>
 
 </div>

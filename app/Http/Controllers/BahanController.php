@@ -42,7 +42,7 @@ class BahanController extends Controller
         return redirect()->route('bahan.create')->with('error', 'Harap melengkapi form isian');
       }
       if( isset($input['bahan']) && $input['bahan']=="bahan-baru" ){
-        DB::table('Bahan')->insert([
+        DB::table('bahan')->insert([
           'nama'   => $input['nama'],
           'jumlah' => $input['stok'],
           'satuan' => $input['satuan']
@@ -67,7 +67,7 @@ class BahanController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -78,7 +78,9 @@ class BahanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $bahans = \App\Bahan::all();
+        $bahan  = \App\Bahan::findOrFail($id);
+        return view('bahan.edit', compact('bahans', 'bahan'));
     }
 
     /**
@@ -90,7 +92,10 @@ class BahanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+        $bahan = \App\Bahan::findOrFail($id);
+        $bahan->update($input);
+        return redirect()->route('bahan.index')->with('success', 'Bahan baku berhasil diperbarui');
     }
 
     /**
