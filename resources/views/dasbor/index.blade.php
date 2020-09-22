@@ -42,6 +42,8 @@
                 <tr>
                   <td>{{$value['created_at']}}</td>
                   <td>{{$value['nama_pemesan']}}</td>
+                  <?php $pupuk = \App\Pupuk::findOrFail($value['id_pupuk']);?>
+                  <!-- <td>{{$pupuk->nama}}</td> -->
                   <td>{{$value->pupuk->nama}}</td>
                   <td>{{$value->jumlah}}</td>
                   <td>{{$value->kontak}}</td>
@@ -146,6 +148,7 @@
             </div>
             <div class="progress-anim mt-20">
               <div class="progress">
+                <?php if($allpemesanan < 1){$allpemesanan = 1;} ?>
                 <div class="progress-bar progress-bar-primary wow animated progress-animated" role="progressbar" aria-valuenow="{{$finishpesanan/$allpemesanan * 100}}" aria-valuemin="0" aria-valuemax="{{$allpemesanan}}"></div>
               </div>
             </div>

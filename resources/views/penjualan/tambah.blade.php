@@ -86,6 +86,16 @@
 															</div>
 														</div> -->
                             <div class="form-group">
+															<label for="exampleInputuname_3" class="col-sm-3 control-label">Kontak</label>
+															<div class="col-sm-9">
+																	<input type="text" class="form-control" name="kontak" placeholder="kontak" required>
+															</div>
+														</div>
+                            <!-- <div class="col-sm-3">
+                              <label for="exampleInputweb_31" class="col-sm-3 control-label">Kontak</label>
+                            <input type="number" class="form-control" name="kontak" value="0" required>
+                            </div> -->
+                            <div class="form-group">
 															<label for="exampleInputuname_3" class="col-sm-3 control-label">Alamat</label>
 															<div class="col-sm-9">
 																	<textarea name="alamat" class="form-control" rows="3" cols="80" required></textarea>

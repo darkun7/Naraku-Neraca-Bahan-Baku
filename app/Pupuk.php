@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $updated_at
  * @property string $deleted_at
  * @property Komposisi[] $komposisis
+ * @property Pemesanan[] $pemesanans
  */
 class Pupuk extends Model
 {
@@ -26,6 +27,7 @@ class Pupuk extends Model
      */
     protected $table = 'pupuk';
     protected $dates = ['deleted_at'];
+
     /**
      * @var array
      */
@@ -37,5 +39,13 @@ class Pupuk extends Model
     public function komposisis()
     {
         return $this->hasMany('App\Komposisi', 'id_pupuk');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function pemesanans()
+    {
+        return $this->hasMany('App\Pemesanan', 'id_pupuk');
     }
 }
