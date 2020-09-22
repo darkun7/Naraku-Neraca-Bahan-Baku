@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a52699870b144a66ba3289b2313d0cd7",
+    "content-hash": "de11fcf73be96778ad81303c7c4aae8e",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4489,6 +4489,46 @@
             "description": "CssToInlineStyles is a class that enables you to convert HTML-pages/files into HTML-pages/files with inline styles. This is very useful when you're sending emails.",
             "homepage": "https://github.com/tijsverkoyen/CssToInlineStyles",
             "time": "2020-07-13T06:12:54+00:00"
+        },
+        {
+            "name": "uestla/simplex-calculator",
+            "version": "1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/uestla/Simplex-Calculator.git",
+                "reference": "8d3b9880bf7c508cf402c783ef9af5eef3bce69b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/uestla/Simplex-Calculator/zipball/8d3b9880bf7c508cf402c783ef9af5eef3bce69b",
+                "reference": "8d3b9880bf7c508cf402c783ef9af5eef3bce69b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "nette/tester": "@dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Simplex": "/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Simple tool for linear programming problems solving",
+            "homepage": "http://simplex.tode.cz",
+            "keywords": [
+                "Algorithm",
+                "linear",
+                "programming",
+                "simplex"
+            ],
+            "time": "2014-02-07T12:28:43+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

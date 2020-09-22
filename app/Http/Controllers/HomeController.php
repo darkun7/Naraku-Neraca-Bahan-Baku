@@ -48,6 +48,7 @@ class HomeController extends Controller
         $allpemesanan  = count($pemesanan);
         $finishpesanan = count($f_pemesanan);
 
+        // $a = DB::table('pupuk')->select(DB::raw());
         // $unggulan = Pemesanan::sortBy(function ($sale) {
         //   return $sale->id_pupuk->count();
         // }, SORT_REGULAR, true)->take(1)->get();
