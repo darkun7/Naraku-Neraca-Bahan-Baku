@@ -39,6 +39,11 @@ class PupukController extends Controller
      */
     public function store(Request $request)
     {
+      $input = $request->all();
+      $input['id_bahan'] = array_unique($input['id_bahan']);
+      if(count($input['id_bahan']) != count($input['rasio'])){
+          return redirect()->route('pupuk.index')->with('error', 'Terdapat duplikat komposisi');
+      }
       // dd($request);
         // return redirect()->route('bahan.create')->with('error', 'Harap melengkapi form isian');
         if ($request->hasFile('gambar')) {
@@ -50,7 +55,7 @@ class PupukController extends Controller
         }else{
             $fileName = 'assets/images/tumbnail_pupuk.png';
         }
-        $input = $request->all();
+
         $pupuk = \App\Pupuk::create([
           'nama'      => $input['nama'],
           'deskripsi' => $input['deskripsi'],
@@ -102,6 +107,11 @@ class PupukController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $input = $request->all();
+        $input['id_bahan'] = array_unique($input['id_bahan']);
+        if(count($input['id_bahan']) != count($input['rasio'])){
+            return redirect()->route('pupuk.index')->with('error', 'Terdapat duplikat komposisi');
+        }
         if ($request->hasFile('gambar')) {
             $uploadFile = $request->file('gambar');
             $destinationPath = 'uploads/pupuk/';// upload path
@@ -111,7 +121,7 @@ class PupukController extends Controller
         }else{
             $fileName = 'assets/images/tumbnail_pupuk.png';
         }
-        $input = $request->all();
+        
         $pupuk = \App\Pupuk::where('id',$id)->first();
         $pupuk->update([
           'nama'      => $input['nama'],
