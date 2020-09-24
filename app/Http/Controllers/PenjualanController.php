@@ -48,10 +48,16 @@ class PenjualanController extends Controller
             'kontak' => $input['kontak']
           ]);
         }
+        $msg = "Saya hendak membeli : ";
+        foreach ($input['jumlah'] as $key => $value) {
+          $msg .= '%0A Pupuk sebanyak '.$input['jumlah'][$key].'%0A ';
+        }
+        $msg .= 'Alamat Pengiriman: '.$input['alamat'];
+        $msg = urlencode($msg);
         if(Auth::user()->level == 'admin'){
           return redirect()->route('penjualan.index')->with('success', 'Pesanan berhasil ditambahkan');
         }else{
-          return redirect()->route('pesanan.index')->with('success', 'Pesanan berhasil ditambahkan');
+          return redirect()->route('pesanan.index')->with('success', $msg);
         }
 
     }

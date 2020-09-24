@@ -16,11 +16,13 @@
     <h5 class="txt-dark">Dasbor</h5>
   </div>
 </div>
+
 <div class="row">
   <div class="col-lg-9 col-md-7 col-sm-7 col-xs-12">
     <div class="panel panel-default card-view">
       <div class="panel-wrapper collapse in">
         <div class="panel-body">
+          @role('produsen')
           <div class="table-wrap">
             <h6>Penjualan</h6>
             <div class="table-responsive">
@@ -93,6 +95,7 @@
             </table>
           </div>
         </div>
+        @endrole
       </div>
     </div>
     </div>

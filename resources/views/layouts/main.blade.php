@@ -244,7 +244,12 @@
 					<a href="javascript:void(0);" data-toggle="collapse" data-target="#pages_dr"><div class="pull-left"><i class="zmdi zmdi-google-pages mr-20"></i><span class="right-nav-text">Bantuan</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 					<ul id="pages_dr" class="collapse collapse-level-1 two-col-list">
 						<li>
-							<a class="active" href="#">Petunjuk Penggunaan</a>
+              @role('produsen')
+							<a class="active" href="{{asset('uploads/Naraku Petunjuk Pengelola.pdf')}}">Petunjuk Penggunaan</a>
+              @endrole
+              @role('pelanggan')
+							<a class="active" href="{{asset('uploads/Naraku Petunjuk Konsumen.pdf')}}">Petunjuk Penggunaan</a>
+              @endrole
 						</li>
             <li>
 							<a class="active" href="#">Ajukan Pertanyaan</a>

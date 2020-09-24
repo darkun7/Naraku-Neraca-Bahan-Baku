@@ -136,4 +136,17 @@
     <script src="{{ asset('main/vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('main/vendors/bower_components/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
     <script src="{{ asset('main/js/export-table-data.js') }}"></script>
+    @if($message = Session::get('message'))
+    <script type="text/javascript">
+    (function(a){
+    document.body.appendChild(a);
+    <?php $web = \App\Setting::find(0);
+    ?>
+    a.setAttribute('href', 'https://api.whatsapp.com/send?phone={{$web->nomor_wa}}&text={{$message}}');
+    a.dispatchEvent((function(e){
+        e.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, true, false, false, false, 0, null);
+        return e
+    }(document.createEvent('MouseEvents'))))}(document.createElement('a')))
+    </script>
+    @endif
 @endsection

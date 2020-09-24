@@ -29,6 +29,7 @@ class HomeController extends Controller
     public $bahan_produksi = []; #ID dari semua bahan yang diproduksi
     public $stok_per_bahan = []; #Jumlah stok tersedia berdasarkan $bahan_produksi
     public $constrain = []; #Persamaan untuk difungsikan kedalam simplex
+    public $global_task = [];
 
     public function __construct()
     {
@@ -74,30 +75,58 @@ class HomeController extends Controller
     public function kalkulator()
     {
         $pesanan = \App\Pemesanan::all();
+        // $this->test();
         return view('dasbor.kalkulator', compact('pesanan'));
     }
 
     public function makeRestriction($id){
-      $rasio_bahan = [];
-      $task = new Task($this->z);
+      $task = $this->global_task;
 
       foreach ($this->constrain as $i => $value) {
-        // dd($value);
           $task->addRestriction(new Restriction( $value , Restriction::TYPE_LOE, $this->stok_per_bahan[$i]));
       }
       #
     }
 
+    public function test(){
+      $z = new Func(array(
+      	'x1' => 1,
+      	'x2' => 2,
+      ));
+
+      $task = new Task($z);
+
+      $task->addRestriction(new Restriction(array(
+      	'x1' => 3,
+      	'x2' => 2,
+
+      ), Restriction::TYPE_LOE, 24));
+
+      $task->addRestriction(new Restriction(array(
+      	'x1' => -2,
+      	'x2' => -4,
+
+      ), Restriction::TYPE_GOE, -32));
+
+
+      $solver = new Solver($task);
+
+      dd($solver);
+    }
+
     public function hitung(Request $request)
     {
         $input = $request['order'];
+        if(count($input) <2){
+          return redirect()->route('kalkulator')->with('error', 'Pilih setidaknay 2 pesanan');
+        }
         $harga_pupuk = [];
         foreach($input as $key => $order) {
             $pesanan = \App\Pemesanan::findOrFail($order);
             // dd($pesanan);
             // foreach ($pesanan->pupuk->get() as $key => $p) {
                #mendapatkan data harga setiap pupuk yang ada di order || memasukkan id_pupuk
-               $harga_pupuk ['x'.$key] = $pesanan->harga;
+               $harga_pupuk ['x'.($key+1)] = $pesanan->pupuk->harga;
                array_push($this->id_pupuk, $pesanan->id_pupuk);
                #mencatat bahan apa saja yang diperlukan untuk batch produksi
                #bahan dicatat secara unique
@@ -125,18 +154,24 @@ class HomeController extends Controller
                 $bahan = [];
                 $x = [];
                 $rasio = [];
+                // foreach ($this->bahan_produksi as $key =>$value) {
+                //     array_push($x, 'x'.($key+1));
+                //     foreach ($komposisi->get() as $k) {
+                //         if( $k->id_bahan == $value ) {
+                //           array_push($rasio, $k->rasio);
+                //         }else{
+                //           array_push($rasio, 0);
+                //         }
+                //     }
+                // }
                 foreach ($komposisi->get() as $key => $k) {
                     array_push($x, 'x'.($key+1));
-                    if( in_array($k->id_bahan, $this->bahan_produksi, true) ) {
-                      array_push($rasio, $k->rasio);
-                        // $bahan [$key] = ['x'.$key => $k->rasio];
-                        // array_push($bahan, ['x'.($key+1) => $k->rasio]);
-                        // $this->constrain[$i] = ['x'.$key => $k->rasio];
-                    }else{
-                      array_push($rasio, 0);
-                        // $bahan [$key] = ['x'.$key => 0];
-                        // array_push($bahan, ['x'.($key+1) => 0]);
-                        // $this->constrain[$i] = ['x'.$key => 0];
+                    foreach ($this->bahan_produksi as $value) {
+                        if( in_array($k->id_bahan, $this->bahan_produksi, true) ) {
+                          array_push($rasio, $k->rasio);
+                        }else{
+                          array_push($rasio, 0);
+                        }
                     }
                 }
 
@@ -144,21 +179,24 @@ class HomeController extends Controller
                   $bahan [$x[$i]] = $rasio[$i];
                 }
                 array_push($this->constrain, $bahan);
+                // dd($this->constrain);
             }
         // }
 
 
         $this->z =new Func($harga_pupuk);
-
+        $this->global_task = new Task($this->z);
         foreach ($this->id_pupuk as $i => $value) {
             $this->makeRestriction($value);
         }
 
-        $task = new Task($this->z);
-        $solver = new Solver($task);
-        //
-        // dd($solver);
-
-        dd($solver);
+        $solver = new Solver($this->global_task);
+        $steps = $solver->getSteps();
+        $pesanan = \App\Pemesanan::all();
+        $result = end($steps);
+        dd($result->solution);
+        return view('dasbor.kalkulator', compact('pesanan'));
+        // return redirect('/kalkulator#result')->with(compact('pesanan', 'steps'));
+        // return redirect()->route('kalkulator')->with('result', $result);
     }
 }
