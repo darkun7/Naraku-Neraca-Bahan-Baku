@@ -63,19 +63,17 @@
             </div>
           </div>
 
-          @if($message = Session::get('result'))
           <div class="col-lg-4">
             <div class="panel panel-default card-view">
               <div class="panel-wrapper collapse in">
                 <div class="panel-body pa-0">
                   <div class="col-sm-12 col-xs-12">
-                    {{$message}}
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          @endif
+          
         </div>
     </div>
   </div>
