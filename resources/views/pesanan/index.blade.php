@@ -133,7 +133,7 @@
     <script src="{{ asset('main/vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('main/vendors/bower_components/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
 
-    @if($message = Session::get('message'))
+    @if($message = Session::get('success'))
     <script type="text/javascript">
     (function(a){
     document.body.appendChild(a);
