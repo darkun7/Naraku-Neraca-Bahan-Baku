@@ -44,8 +44,6 @@
                 <tr>
                   <td>{{$value['created_at']}}</td>
                   <td>{{$value['nama_pemesan']}}</td>
-                  <?php $pupuk = \App\Pupuk::findOrFail($value['id_pupuk']);?>
-                  <!-- <td>{{$pupuk->nama}}</td> -->
                   <td>{{$value->pupuk->nama}}</td>
                   <td>{{$value->jumlah}}</td>
                   <td>{{$value->kontak}}</td>
