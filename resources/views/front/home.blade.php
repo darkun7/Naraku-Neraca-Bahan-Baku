@@ -132,7 +132,7 @@
 					<header class="col-xs-12 header text-center">
 						<h4>Pembelian Pupuk</h4>
 						<p style="margin-bottom: 20px;">Karya Tani 2 hanya menyediakan produk untuk anggota, <br>sehingga untuk dapat melakukan pemesanan diharap untuk melakukan pendaftaran/ login terlebih dahulu.<br></p>
-            <a href="{{route('pesanan.create')}}" class="btn-primary text-center text-uppercase active md-round">Pesan Sekarang</a>
+            <a href="{{route('pupuk.index')}}" class="btn-primary text-center text-uppercase active md-round">Pesan Sekarang</a>
           </header>
 				</div>
 

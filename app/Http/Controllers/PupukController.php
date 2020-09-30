@@ -121,11 +121,12 @@ class PupukController extends Controller
         }else{
             $fileName = 'assets/images/tumbnail_pupuk.png';
         }
-        
+
         $pupuk = \App\Pupuk::where('id',$id)->first();
         $pupuk->update([
           'nama'      => $input['nama'],
           'deskripsi' => $input['deskripsi'],
+          'jumlah'    => $input['jumlah'],
           'harga'     => $input['harga'],
           'gambar'    => $fileName
         ]);

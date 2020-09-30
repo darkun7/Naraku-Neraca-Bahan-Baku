@@ -59,6 +59,12 @@
 															</div>
 														</div>
                             <div class="form-group">
+															<label for="exampleInputweb_31" class="col-sm-3 control-label">Jumlah</label>
+															<div class="col-sm-9">
+																	<input type="number" class="form-control" name="jumlah" value="{{$pupuk['jumlah']}}" placeholder="Contoh: 25000" required>
+															</div>
+														</div>
+                            <div class="form-group">
 															<label for="exampleInputweb_31" class="col-sm-3 control-label">Komposisi</label>
 															<div class="col-sm-9" id="area_entri">
                                 <?php $jml_komposisi = count($pupuk->komposisis()->get()); ?>
