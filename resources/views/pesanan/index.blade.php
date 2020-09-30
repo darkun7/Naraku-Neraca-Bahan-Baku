@@ -33,6 +33,41 @@
         <!-- /Breadcrumb -->
       </div>
 
+      @if($message = Session::get('success'))
+      <div id="waModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="waModal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h5 class="modal-title">Lanjutkan ke Whatsaap</h5>
+            </div>
+            <?php $web = \App\Setting::find(0);
+            ?>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <p>Konfirmasi pesanan anda dengan menghubungi melalui kontak whatsapp pengelola.</p>
+                </div>
+                <div class="form-group">
+                  <label for="recipient-name" class="control-label mb-10" disabled>Penerima:</label>
+                  <input type="text" class="form-control" id="recipient-name" value="{{$web->nomor_wa}}">
+                </div>
+                <!-- <div class="form-group">
+                  <label for="message-text" class="control-label mb-10">Pesan:</label>
+                  <textarea class="form-control" id="message-text" disabled>{{$message}}</textarea>
+                </div> -->
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+              <a target="_blank" href="https://api.whatsapp.com/send?phone={{$web->nomor_wa}}&text={{$message}}" class="btn btn-success"><i class="fa fa-whatsapp"></i> Lanjutkan</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      @endif
+
+
       <!-- Row -->
       <div class="row">
 					<div class="col-sm-12">
@@ -119,6 +154,8 @@
           </div>
         </div>
       </div>
+    </div>
+
       <!-- /Row -->
 @endsection
 
@@ -133,17 +170,24 @@
     <script src="{{ asset('main/vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('main/vendors/bower_components/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
 
-    @if($message = Session::get('success'))
     <script type="text/javascript">
+    $(window).on('load',function(){
+            $('#waModal').modal('show');
+        });
+    </script>
+
+    @if($message = Session::get('success'))
+
+    <!-- <script type="text/javascript">
     (function(a){
     document.body.appendChild(a);
-    <?php $web = \App\Setting::find(0);
+    <?php #$web = \App\Setting::find(0);
     ?>
     a.setAttribute('href', 'https://api.whatsapp.com/send?phone={{$web->nomor_wa}}&text={{$message}}');
     a.dispatchEvent((function(e){
         e.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, true, false, false, false, 0, null);
         return e
     }(document.createEvent('MouseEvents'))))}(document.createElement('a')))
-    </script>
+    </script> -->
     @endif
 @endsection
