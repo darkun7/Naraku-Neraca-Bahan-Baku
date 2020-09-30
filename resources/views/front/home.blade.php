@@ -103,7 +103,7 @@
 								<div class="img-holder"><img src="{{ asset($value['gambar']) }}" alt="image description" class="img-responsive"></div>
 								<cite>
 									<strong>{{$value['nama']}}</strong>
-									<h4>{{$value['harga']}}</h4>
+									<h4>>Rp {{number_format($value['harga'],0,",",".")}}</h4>
 								</cite>
 								<?php
 									if( strlen($value['deskripsi'])>150 ){
