@@ -44,9 +44,9 @@
                             <div class="form-group">
                               <label for="exampleInputweb_31" class="col-sm-3 control-label">Link Google Maps</label>
                               <div class="col-sm-9">
-                                  <input type="text" class="form-control" name="instagram" placeholder="Contoh: https://maps.google.com/maps?hl=en&amp;q=-8.0457162,113.8261433" value="{{$web['maps']}}" required>
+                                  <input type="text" class="form-control" name="maps" placeholder="Contoh: https://maps.google.com/maps?hl=en&amp;q=-8.0457162,113.8261433" value="{{$web['maps']}}" required>
                                   <ol>
-                                    <li>Buka website <a href="#">https://www.embedgooglemap.net/</a> </li>
+                                    <li>Buka website <a target="_blank" href="https://googlemapsembed.net/">https://googlemapsembed.net/</a> </li>
                                     <li>Tandai tempat usaha Karya Tani 2</li>
                                     <li>Tekan Get-HTML Code, dan akan ditampilkan kode yang cukup panjang. Namun anda hanya cukup untuk menyalin teks didalam tanda petik src=""
                                      </li>

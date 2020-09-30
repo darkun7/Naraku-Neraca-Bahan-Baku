@@ -57,7 +57,7 @@
 			<div class="mobile-only-brand pull-left" style="background: #27ae60" >
 				<div class="nav-header pull-left">
 					<div class="logo-wrap">
-						<a href="index.html">
+						<a href="{{route('home')}}">
 							<img class="brand-img" src="{{ asset('assets/images/emblem-light.png') }}" alt="Naraku"/>
 							<span class="brand-text">Naraku</span>
 						</a>

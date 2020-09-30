@@ -103,7 +103,7 @@
 								<div class="img-holder"><img src="{{ asset($value['gambar']) }}" alt="image description" class="img-responsive"></div>
 								<cite>
 									<strong>{{$value['nama']}}</strong>
-									<h4>>Rp {{number_format($value['harga'],0,",",".")}}</h4>
+									<h4>Rp {{number_format($value['harga'],0,",",".")}}</h4>
 								</cite>
 								<?php
 									if( strlen($value['deskripsi'])>150 ){
@@ -180,7 +180,11 @@
 					</div>
           <div class="col-xs-12 col-sm-6 col-md-3">
 						<h3 class="heading">Lokasi Produksi</h3>
-            <div style="overflow:hidden;width: 700px;position: relative;"><iframe src="{{$web['maps']}}+(Karya Tani 2 Bondowoso)&amp;ie=UTF8&amp;t=&amp;z=12&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><div style="position: absolute;width: 80%;bottom: 10px;left: 0;right: 0;margin-left: auto;margin-right: auto;color: #000;text-align: center;"><small style="line-height: 1.8;font-size: 0px;background: #fff;"> <a href="https://googlemapsembed.net/">Embed Google Map</a> </small></div><style>.nvs{position:relative;text-align:right;} #gmap_canvas img{max-width:none!important;background:none!important}</style></div>
+						<?php
+							$map = $web['maps'];
+							$map = str_replace("&amp;", "&", $map);
+						 ?>
+            <div style="overflow:hidden;width: 700px;position: relative;"><iframe src="{{$map}}+(Karya Tani 2 Bondowoso)&amp;ie=UTF8&amp;t=&amp;z=12&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><div style="position: absolute;width: 80%;bottom: 10px;left: 0;right: 0;margin-left: auto;margin-right: auto;color: #000;text-align: center;"><small style="line-height: 1.8;font-size: 0px;background: #fff;"> <a href="https://googlemapsembed.net/">Embed Google Map</a> </small></div><style>.nvs{position:relative;text-align:right;} #gmap_canvas img{max-width:none!important;background:none!important}</style></div>
             <h3 class="heading">Hubungi Kami</h3>
 						<ul class="list-unstyled contact-list">
 							<li><i class="fa fa-phone"></i> <a href="tell:{{$web['nomor_wa']}}">+{{$web['nomor_wa']}}</a></li>
