@@ -25,6 +25,19 @@
               <div class="panel-wrapper collapse in">
                 <div class="panel-body pa-0">
                   <div class="col-sm-12 col-xs-12">
+                    @if(isset($response))
+                        <p>Keuntungan lebih yang dapat diperoleh jika menerapkan sesuai dengan perhitungan adalah <span class="badge badge-primary">Rp {{number_format($response['z'])}}</span>.</p>
+                        <p>Kapasitas produksi sesuai rekomendasi dengan persediaan bahan baku yang tersedia:
+                            <ol>
+                            @foreach ($response['s'] as $key => $value)
+                                @foreach ($value as $pupuk => $jumlah)
+                                    <li><b>{{$pupuk}}</b> sebanyak <code>{{$jumlah}}</code></li>
+                                @endforeach
+                            @endforeach
+                            </ol>
+                        </p>
+                        <a href="{{route('kalkulator')}}" class="btn btn-primary mt-20 mr-10 mb-30"><span class="ti-arrow-left"></span> Kalkulator</a>
+                    @else
                     <div class="form-wrap">
                       <form method="post" action="{{route('hitung')}}">
                         @csrf
@@ -57,6 +70,8 @@
                         </div>
                       </form>
                     </div>
+
+                    @endif
                   </div>
                 </div>
               </div>
@@ -67,13 +82,16 @@
             <div class="panel panel-default card-view">
               <div class="panel-wrapper collapse in">
                 <div class="panel-body pa-0">
-                  <div class="col-sm-12 col-xs-12">
+                  <div class="col-sm-12 col-xs-12 pb-20">
+                    <h5>Penegasan</h5><br>
+                    <p>Rekomendasi pemillihan penyelesaian pesanan dibuat berdasar ketersediaan bahan dan memprioritaskan pada keuntungan <i>(profit oriented)</i>. Sehingga keputusan tetap berada pada pertimbangan dari pengelola produksi dari Karya Tani 2 Bondowoso.</p>
+                    <p>Sistem kalkulator bahan baku dari Naraku hanya sebagai rekomendasi dalam pengambilan keputusan (DSS). <br></p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          
+
         </div>
     </div>
   </div>

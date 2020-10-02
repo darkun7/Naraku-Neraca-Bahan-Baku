@@ -40,7 +40,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/{id}/edit', 'PenjualanController@edit')->name('edit')->middleware('role:produsen');
         Route::get('/{id}/set/{status}', 'PenjualanController@setstatus')->name('edit')->middleware('role:pelanggan|produsen');
         Route::patch('/{id}/edit', 'PenjualanController@update')->name('update')->middleware('role:produsen');
-        Route::delete('/{id}/hapus', 'PenjualanController@destroy')->name('delete')->middleware('role:pelanggan|produsen');
+        Route::get('/{id}/hapus', 'PenjualanController@destroy')->name('delete')->middleware('role:pelanggan|produsen');
     });
     Route::group(['as' => 'pesanan.' , 'prefix' => 'pesanan'], function () {                // unimplemented
         Route::get('/', 'PesananController@index')->name('index')->middleware('role:produsen|pelanggan');

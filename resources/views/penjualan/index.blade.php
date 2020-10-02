@@ -87,11 +87,11 @@
                               </button>
                               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <li>Ubah Status</li>
-                                <li><span class="btn btn-warning btn-icon-anim"> <a class="dropdown-item" href="/penjualan/{{$value['id']}}/set/belumbayar">Belum bayar</a></span></li>
-                                <li><span class="btn btn-info btn-icon-anim"> <a class="dropdown-item" href="/penjualan/{{$value['id']}}/set/lunas">Lunas</a></span></li>
-                                <li><span class="btn btn-success btn-icon-anim"> <a class="dropdown-item" href="/penjualan/{{$value['id']}}/set/selesai">Selesai</a></span></li>
-                                <li><span class="btn btn-danger btn-icon-anim"> <a class="dropdown-item" href="/penjualan/{{$value['id']}}/set/batal">Batal</a></span></li>
-                                <li><span class="btn btn-github btn-icon-anim"> <a class="dropdown-item" href="/penjualan/{{$value['id']}}/hapus" style="color:white">Hapus</a></span></li>
+                                <a class="dropdown-item" href="/penjualan/{{$value['id']}}/set/belumbayar"><li><span class="btn btn-warning btn-icon-anim"> Belum bayar</span></li></a>
+                                <a class="dropdown-item" href="/penjualan/{{$value['id']}}/set/lunas"><li><span class="btn btn-info btn-icon-anim"> Lunas</span></li></a>
+                                <a class="dropdown-item" href="/penjualan/{{$value['id']}}/set/selesai"><li><span class="btn btn-success btn-icon-anim"> Selesai</span></li></a>
+                                <a class="dropdown-item" href="/penjualan/{{$value['id']}}/set/batal"><li><span class="btn btn-danger btn-icon-anim"> Batal</span></li></a>
+                                <a class="dropdown-item" href="/penjualan/{{$value['id']}}/hapus" style="color:white"><li><span class="btn btn-github btn-icon-anim"> Hapus</span></li></a>
                               </div>
                             </ul>
                           </td>

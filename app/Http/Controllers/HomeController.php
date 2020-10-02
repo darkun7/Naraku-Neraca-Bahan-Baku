@@ -74,7 +74,7 @@ class HomeController extends Controller
 
     public function kalkulator()
     {
-        $pesanan = \App\Pemesanan::all();
+        $pesanan = \App\Pemesanan::where('status', '<>', 'selesai')->where('status', '<>', 'batal')->where('status', '<>', 'lunas')->get();
         // $this->test();
         return view('dasbor.kalkulator', compact('pesanan'));
     }
@@ -117,8 +117,8 @@ class HomeController extends Controller
     public function hitung(Request $request)
     {
         $input = $request['order'];
-        if(count($input) <2){
-          return redirect()->route('kalkulator')->with('error', 'Pilih setidaknay 2 pesanan');
+        if(count($input) <3){
+          return redirect()->route('kalkulator')->with('error', 'Pilih setidaknya 3 pesanan');
         }
         $harga_pupuk = [];
         foreach($input as $key => $order) {
@@ -194,8 +194,27 @@ class HomeController extends Controller
         $steps = $solver->getSteps();
         $pesanan = \App\Pemesanan::all();
         $result = end($steps);
-        dd($result->solution);
-        return view('dasbor.kalkulator', compact('pesanan'));
+        $Z = $result->z->b->n;
+        $unique = [];
+        foreach ($result->solution as $key => $solution) {
+            if(!in_array($solution->n, $unique, true) && $solution->n != 0){
+                array_push($unique, $solution->n);
+            }
+        }
+        $solusi = [];
+        foreach ($this->id_pupuk as $i => $value) {
+            $pupuk = \App\Pupuk::findOrFail($value);
+            array_push($solusi, [$pupuk->nama =>$unique[$i]]);
+        }
+
+        // dd($unique);
+        // dd($result);
+        $response = [
+          'z' => $Z,
+          's' => $solusi
+        ];
+        // dd($result->solution);
+        return view('dasbor.kalkulator', compact('pesanan','response'));
         // return redirect('/kalkulator#result')->with(compact('pesanan', 'steps'));
         // return redirect()->route('kalkulator')->with('result', $result);
     }

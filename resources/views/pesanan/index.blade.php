@@ -124,7 +124,7 @@
                             @if ($value->status == "belum bayar")
                             <a class="btn btn-danger btn-icon-anim btn-square btn-sm" href="/penjualan/{{$value['id']}}/set/batal" onclick="return confirm('Apakah yakin untuk membatalkan pesanan?\n Pesanan yang sudah dihapus tidak dapat dikembalikan')"><i class="fa fa-times"></i></a>
                             @else
-                            <aclass="btn btn-success btn-icon-anim btn-square btn-sm"><i class="fa fa-check"></i></a>
+                            <a class="btn btn-success btn-icon-anim btn-square btn-sm"><i class="fa fa-check"></i></a>
                             @endif
                           </td>
                           <!-- <td>
