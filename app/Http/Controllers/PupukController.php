@@ -118,8 +118,6 @@ class PupukController extends Controller
             $fileName = date('YmdHis'). '-' . Str::random(25) . "_pupuk.".$uploadFile->getClientOriginalExtension();
             $uploadFile->move($destinationPath, $fileName);
             $fileName = $destinationPath.$fileName;
-        }else{
-            $fileName = 'assets/images/tumbnail_pupuk.png';
         }
 
         $pupuk = \App\Pupuk::where('id',$id)->first();

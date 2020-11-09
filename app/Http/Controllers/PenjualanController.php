@@ -50,10 +50,12 @@ class PenjualanController extends Controller
         }
         $msg = "Saya hendak membeli : ";
         foreach ($input['jumlah'] as $key => $value) {
-          $msg .= '%0A Pupuk sebanyak '.$input['jumlah'][$key].'%0A ';
+          $msg .= '#enter# *Pupuk sebanyak* '.$input['jumlah'][$key].'#enter# ';
         }
+
         $msg .= 'Alamat Pengiriman: '.$input['alamat'];
         $msg = urlencode($msg);
+        $msg = str_replace("#enter#","%0A", $msg);
         if(Auth::user()->level == 'admin'){
           return redirect()->route('penjualan.index')->with('success', 'Pesanan berhasil ditambahkan');
         }else{
