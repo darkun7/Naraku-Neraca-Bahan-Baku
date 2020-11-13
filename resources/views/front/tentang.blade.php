@@ -35,7 +35,7 @@
 							<div class="col-xs-12 col-sm-6">
 								<div class="txt-holder">
 									<h4 class="heading2">Karya Tani 2 Bondowoso<br>dengan Tools Naraku</h4>
-									<?php echo $web['deskripsi_naraku'] ?>
+									{!! $web['deskripsi_naraku'] !!}
 									<a href="{{route('pesanan.create')}}" class="btn-primary md-round">Pesan Pupuk <i class="fa fa-angle-right"></i></a>
 								</div>
 							</div>

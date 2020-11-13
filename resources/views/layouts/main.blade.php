@@ -19,8 +19,8 @@
   <link rel="manifest" href="{{ asset('assets/icon/site.webmanifest') }}">
 
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="description" content="EXO | SEO Landing page Template">
-  <meta name="keywords" content="tanaman, pertanian, perkebunan, pupuk, pupuk organic, kalkukator pintar, neraca bahan baku, sistem pintar">
+  <meta name="description" content="Naraku merupakan sistem Neraca Bahan Baku. Sistem ini berfungsi sebagai penghitung batasan maksimum dari produksi pupuk kandang. Hal tersebut bertujuan untuk memaksimalkan penggunaan bahan baku pembuatan pupuk yang tersedia sehingga jumlah pupuk kandang yang diproduksi menjadi optimal.">
+	<meta name="keywords" content="tanaman, pertanian, perkebunan, pupuk, pupuk organic, kalkukator pintar, neraca bahan baku, sistem pintar, pak buharto, buharto">
   <meta name="author" content="PKM 2020 Naraku Unej">
 
 	<title>Naraku - @yield('title')</title>
