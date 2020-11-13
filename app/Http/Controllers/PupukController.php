@@ -112,6 +112,8 @@ class PupukController extends Controller
         if(count($input['id_bahan']) != count($input['rasio'])){
             return redirect()->route('pupuk.index')->with('error', 'Terdapat duplikat komposisi');
         }
+        $pupuk = \App\Pupuk::where('id',$id)->first();
+        $fileName = $pupuk->gambar;
         if ($request->hasFile('gambar')) {
             $uploadFile = $request->file('gambar');
             $destinationPath = 'uploads/pupuk/';// upload path
@@ -120,7 +122,6 @@ class PupukController extends Controller
             $fileName = $destinationPath.$fileName;
         }
 
-        $pupuk = \App\Pupuk::where('id',$id)->first();
         $pupuk->update([
           'nama'      => $input['nama'],
           'deskripsi' => $input['deskripsi'],
