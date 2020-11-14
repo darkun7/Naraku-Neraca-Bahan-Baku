@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -50,16 +51,17 @@ class PenjualanController extends Controller
         }
         $msg = "Saya hendak membeli : ";
         foreach ($input['jumlah'] as $key => $value) {
-          $msg .= '#enter# *Pupuk sebanyak* '.$input['jumlah'][$key].'#enter# ';
+          $pupuk = \App\Pupuk::where('id',$input['id_pupuk'][$key])->first();
+          $msg .= '#enter# *'.$pupuk->nama.'* sebanyak '.$input['jumlah'][$key].'#enter# ';
         }
-
         $msg .= 'Alamat Pengiriman: '.$input['alamat'];
         $msg = urlencode($msg);
-        $msg = str_replace("#enter#","%0A", $msg);
+        $msg = str_replace("%23enter%23","%0A", $msg);
         if(Auth::user()->level == 'admin'){
           return redirect()->route('penjualan.index')->with('success', 'Pesanan berhasil ditambahkan');
         }else{
-          return redirect()->route('pesanan.index')->with('success', $msg);
+          Session::flash('success', 'Pesanan berhasil ditambahkan');
+          return redirect()->route('pesanan.index')->with('msg', $msg);
         }
 
     }

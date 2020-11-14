@@ -33,7 +33,7 @@
         <!-- /Breadcrumb -->
       </div>
 
-      @if($message = Session::get('success'))
+      @if($message = Session::get('msg'))
       <div id="waModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="waModal" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
